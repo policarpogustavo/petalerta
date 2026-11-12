@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 440" width="520" height="440">
+  <defs>
+    <pattern id="quadras" width="26" height="26" patternUnits="userSpaceOnUse" patternTransform="rotate(-9)">
+      <rect x="3" y="3" width="20" height="20" rx="3" fill="#EFE5D4"/>
+    </pattern>
+    <clipPath id="moldura">
+      <rect x="10" y="10" width="500" height="420" rx="34"/>
+    </clipPath>
+  </defs>
+
+  <!-- Bairro: quadras, parques, rio e avenidas -->
+  <g clip-path="url(#moldura)">
+    <rect width="520" height="440" fill="#FBF6EE"/>
+    <rect width="520" height="440" fill="url(#quadras)"/>
+    <ellipse cx="410" cy="352" rx="120" ry="72" fill="#D5EBCB" stroke="#BCDDAF" stroke-width="2" transform="rotate(-18 410 352)"/>
+    <circle cx="80" cy="64" r="48" fill="#D5EBCB" stroke="#BCDDAF" stroke-width="2"/>
+    <g fill="none">
+      <path d="M-20 318C90 278 160 338 270 298S440 198 540 213" stroke="#E5D8C4" stroke-width="46"/>
+      <path d="M-20 318C90 278 160 338 270 298S440 198 540 213" stroke="#FFFFFF" stroke-width="41"/>
+      <path d="M-20 318C90 278 160 338 270 298S440 198 540 213" stroke="#AFDAE8" stroke-width="22"/>
+      <path d="M196 -10L252 450" stroke="#E5D8C4" stroke-width="17"/>
+      <path d="M196 -10L252 450" stroke="#FFFFFF" stroke-width="12"/>
+      <path d="M-10 128C150 108 330 138 530 98" stroke="#E5D8C4" stroke-width="17"/>
+      <path d="M-10 128C150 108 330 138 530 98" stroke="#FFFFFF" stroke-width="12"/>
+    </g>
+  </g>
+  <rect x="10" y="10" width="500" height="420" rx="34" fill="none" stroke="#E6D8C5" stroke-width="2"/>
+
+  <!-- Área provável em volta do animal perdido -->
+  <circle cx="150" cy="215" r="98" fill="#C2410C" fill-opacity="0.1" stroke="#C2410C" stroke-width="3" stroke-dasharray="9 9"/>
+  <circle cx="150" cy="215" r="44" fill="#C2410C" fill-opacity="0.14"/>
+
+  <!-- Trajeto até o animal achado, com um avistamento e o selo de combinação -->
+  <path d="M150 215C200 175 240 150 300 150S360 160 380 168" fill="none" stroke="#1F2933" stroke-width="4.5" stroke-dasharray="1 12" stroke-linecap="round"/>
+  <circle cx="221" cy="168" r="11" fill="#FFFFFF" stroke="#1F2933" stroke-width="3.5"/>
+  <circle cx="221" cy="168" r="3.5" fill="#1F2933"/>
+  <circle cx="300" cy="150" r="26" fill="#067647" stroke="#FFFFFF" stroke-width="5"/>
+  <path d="M288 150l8.5 8.5 15-16" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Sombras dos pinos -->
+  <ellipse cx="150" cy="219" rx="20" ry="6" fill="#1F2933" opacity="0.18"/>
+  <ellipse cx="380" cy="172" rx="20" ry="6" fill="#1F2933" opacity="0.18"/>
+
+  <!-- Pino do animal perdido (laranja, com pata) -->
+  <g transform="translate(120 138)">
+    <path d="M30 0C13 0 0 13 0 30c0 21 26 44 30 47 4-3 30-26 30-47C60 13 47 0 30 0z" fill="#C2410C" stroke="#FFFFFF" stroke-width="4"/>
+    <circle cx="30" cy="30" r="20" fill="#FFF9F2"/>
+    <g fill="#C2410C">
+      <ellipse cx="30" cy="34.2" rx="6.6" ry="5.4"/>
+      <circle cx="22.6" cy="27" r="2.6"/>
+      <circle cx="27.4" cy="22.8" r="2.9"/>
+      <circle cx="32.6" cy="22.8" r="2.9"/>
+      <circle cx="37.4" cy="27" r="2.6"/>
+    </g>
+  </g>
+
+  <!-- Pino do animal achado (petróleo, com coração) -->
+  <g transform="translate(350 91)">
+    <path d="M30 0C13 0 0 13 0 30c0 21 26 44 30 47 4-3 30-26 30-47C60 13 47 0 30 0z" fill="#0B5563" stroke="#FFFFFF" stroke-width="4"/>
+    <circle cx="30" cy="30" r="20" fill="#FFF9F2"/>
+    <path d="M30 41s-10-6.2-10-12.6a5.4 5.4 0 0 1 10-2.8 5.4 5.4 0 0 1 10 2.8C40 34.8 30 41 30 41z" fill="#0B5563"/>
+  </g>
+</svg>
