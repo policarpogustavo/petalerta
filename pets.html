@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Mural de animais perdidos, achados e em risco, com filtros e um mapa que mostra por onde cada animal pode ter andado.">
+    <meta name="theme-color" content="#0B5563">
+    <title>Mural de animais perdidos — PetAlerta</title>
+    <link rel="icon" href="assets/icons/PetAlerta.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..800&display=swap">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/paginas.css">
+    <link rel="stylesheet" href="css/mapa.css">
+    <script src="js/menu.js" defer></script>
+    <script src="js/dados.js" defer></script>
+    <script src="js/cruzamento.js" defer></script>
+    <script src="js/cards.js" defer></script>
+    <script src="js/validacao.js" defer></script>
+    <script src="js/mapa.js" defer></script>
+    <script src="js/mural.js" defer></script>
+</head>
+
+<body>
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="cabecalho">
+        <div class="container cabecalho__interno">
+            <a class="marca" href="index.html">
+                <img class="marca__icone" src="assets/icons/PetAlerta.svg" alt="" width="44" height="44">
+                <span class="marca__nome">Pet<span>Alerta</span></span>
+            </a>
+
+            <button class="botao-menu" type="button" aria-label="Menu" aria-expanded="false"
+                aria-controls="menu-principal">
+                <span class="botao-menu__barra"></span>
+                <span class="botao-menu__barra"></span>
+                <span class="botao-menu__barra"></span>
+            </button>
+
+            <nav class="menu" id="menu-principal" aria-label="Menu principal">
+                <ul class="menu__lista">
+                    <li><a class="menu__link" href="index.html">Início</a></li>
+                    <li><a class="menu__link" href="pets.html" aria-current="page">Pets Perdidos</a></li>
+                    <li><a class="menu__link" href="sobre.html">Sobre</a></li>
+                    <li><a class="menu__link" href="faq.html">FAQ</a></li>
+                    <li><a class="menu__link" href="integrantes.html">Integrantes</a></li>
+                    <li><a class="menu__link" href="contato.html">Contato</a></li>
+                    <li><a class="menu__link menu__link--destaque" href="anunciar.html">Anunciar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo">
+        <section class="topo-pagina" aria-labelledby="titulo-pagina">
+            <div class="container topo-pagina__conteudo">
+                <p class="sobretitulo">Mural da vizinhança</p>
+                <h1 id="titulo-pagina">Mural de animais</h1>
+                <p class="texto-apoio">Animais perdidos, achados e em risco registrados pela vizinhança. Filtre os
+                    avisos, toque em um pino e veja no mapa por onde o animal pode ter andado.</p>
+            </div>
+        </section>
+
+        <section class="secao secao--sem-topo" aria-labelledby="titulo-filtros">
+            <div class="container">
+                <h2 class="visualmente-oculto" id="titulo-filtros">Buscar avisos</h2>
+
+                <form class="cartao filtros" id="filtros" role="search" aria-labelledby="titulo-filtros">
+                    <div class="campo filtros__busca">
+                        <label class="campo__rotulo" for="filtro-busca">Buscar</label>
+                        <input class="campo__entrada" id="filtro-busca" name="busca" type="search"
+                            placeholder="Ex.: coleira azul, caramelo" autocomplete="off">
+                    </div>
+                    <div class="campo">
+                        <label class="campo__rotulo" for="filtro-situacao">Situação</label>
+                        <select class="campo__entrada" id="filtro-situacao" name="situacao">
+                            <option value="">Todas</option>
+                            <option value="perdido">Perdido</option>
+                            <option value="achado">Achado</option>
+                            <option value="risco">Em risco</option>
+                            <option value="reencontrado">Reencontrado</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label class="campo__rotulo" for="filtro-especie">Espécie</label>
+                        <select class="campo__entrada" id="filtro-especie" name="especie">
+                            <option value="">Todas</option>
+                            <option value="cachorro">Cachorro</option>
+                            <option value="gato">Gato</option>
+                            <option value="ave">Ave</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label class="campo__rotulo" for="filtro-porte">Porte</label>
+                        <select class="campo__entrada" id="filtro-porte" name="porte">
+                            <option value="">Todos</option>
+                            <option value="pequeno">Pequeno</option>
+                            <option value="medio">Médio</option>
+                            <option value="grande">Grande</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label class="campo__rotulo" for="filtro-bairro">Bairro</label>
+                        <select class="campo__entrada" id="filtro-bairro" name="bairro">
+                            <option value="">Todos</option>
+                        </select>
+                    </div>
+                </form>
+
+                <div class="resultados">
+                    <p class="resultados__contador" id="contador" aria-live="polite"></p>
+                    <button class="botao botao--fantasma botao--pequeno" id="limpar-filtros" type="button">Limpar
+                        filtros</button>
+                </div>
+
+                <div class="busca">
+                    <!-- Mapa: o desenho e os pinos são criados pelo mapa.js -->
+                    <section class="mapa" id="mapa" aria-labelledby="titulo-mapa">
+                        <h2 class="visualmente-oculto" id="titulo-mapa">Mapa da busca</h2>
+
+                        <div class="mapa__moldura">
+                            <svg class="mapa__desenho" viewBox="0 0 1000 750" aria-hidden="true" focusable="false">
+                                <defs>
+                                    <pattern id="mapa-quadras" width="14" height="14" patternUnits="userSpaceOnUse"
+                                        patternTransform="rotate(-9)">
+                                        <rect class="mapa__quadra" x="1.6" y="1.6" width="10.8" height="10.8"
+                                            rx="1.6" />
+                                    </pattern>
+                                </defs>
+                                <g class="mapa__base"></g>
+                                <g class="mapa__busca"></g>
+                            </svg>
+
+                            <div class="mapa__marcadores"></div>
+
+                            <div class="mapa__controles">
+                                <button class="botao botao--claro botao--icone" type="button" data-zoom="mais"
+                                    aria-label="Aproximar">+</button>
+                                <button class="botao botao--claro botao--icone" type="button" data-zoom="menos"
+                                    aria-label="Afastar">−</button>
+                                <button class="botao botao--claro botao--icone" type="button" data-zoom="tudo"
+                                    aria-label="Ver todos os avisos">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <p class="mapa__dica" hidden>
+                                <span class="mapa__dica-texto"></span>
+                                <button class="botao botao--claro botao--pequeno" type="button">Cancelar</button>
+                            </p>
+
+                            <div class="mapa__escala" aria-hidden="true">
+                                <span class="mapa__escala-barra"></span>
+                                <span class="mapa__escala-texto"></span>
+                            </div>
+                        </div>
+
+                        <ul class="mapa__legenda" aria-label="Legenda do mapa">
+                            <li><span class="legenda-pino" data-situacao="perdido"></span>Perdido</li>
+                            <li><span class="legenda-pino" data-situacao="achado"></span>Achado</li>
+                            <li><span class="legenda-pino" data-situacao="risco"></span>Em risco</li>
+                            <li><span class="legenda-pino" data-situacao="reencontrado"></span>Reencontrado</li>
+                            <li><span class="legenda-area"></span>Área provável</li>
+                            <li><span class="legenda-trajeto"></span>Trajeto dos avistamentos</li>
+                        </ul>
+                        <p class="mapa__nota">Mapa ilustrativo da região central de São Paulo, com posições aproximadas.
+                            <a href="faq.html#pergunta-mapa">Como a área provável é calculada?</a></p>
+                        <p class="mapa__status visualmente-oculto" aria-live="polite"></p>
+                    </section>
+
+                    <!-- Painel: o mural.js troca este conteúdo pelos detalhes do caso escolhido -->
+                    <aside class="cartao painel" id="painel" aria-labelledby="painel-titulo">
+                        <div class="painel__inicio">
+                            <span class="icone-bolha icone-bolha--grande"><img src="assets/icons/mapa.svg" alt=""
+                                    width="44" height="44"></span>
+                            <h2 id="painel-titulo">Por onde procurar?</h2>
+                            <p>Escolha um animal no mapa ou na lista. Mostramos onde ele foi visto e a área por onde
+                                pode ter andado.</p>
+                            <ul class="lista-check">
+                                <li><strong>Pino:</strong> onde o caso foi registrado.</li>
+                                <li><strong>Números:</strong> avistamentos enviados pela vizinhança.</li>
+                                <li><strong>Círculo:</strong> área provável, que cresce a cada dia sem notícias.</li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+
+                <h2 class="titulo-lista">Todos os avisos</h2>
+                <ul class="grade grade--cards" id="lista-cards"></ul>
+
+                <div class="vazio" id="mensagem-vazio" hidden>
+                    <p>Nenhum animal com esses filtros. Que tal anunciar?</p>
+                    <a class="botao" href="anunciar.html">Anunciar um animal</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal para enviar uma pista sobre um caso -->
+        <dialog class="modal" id="modal-pista" aria-labelledby="modal-titulo">
+            <div class="modal__conteudo">
+                <header class="modal__topo">
+                    <div>
+                        <h2 id="modal-titulo">Vi este animal</h2>
+                        <p class="modal__subtitulo" id="modal-animal"></p>
+                    </div>
+                    <button class="botao botao--fantasma botao--icone" type="button" data-fechar
+                        aria-label="Fechar janela"> ×</button>
+                </header>
+
+                <form class="formulario" id="form-pista" novalidate>
+                    <p>Conte onde e quando você viu. Quem registrou o caso recebe sua mensagem pelo PetAlerta.</p>
+                    <p class="mensagem" id="pista-marcada" hidden>
+                        <img src="assets/icons/local.svg" alt="" width="24" height="24">
+                        Ponto marcado no mapa. Ele vai aparecer como um novo avistamento.
+                    </p>
+                    <div class="campo">
+                        <label class="campo__rotulo" for="pista-onde">Onde você viu?</label>
+                        <input class="campo__entrada" id="pista-onde" name="onde" type="text"
+                            placeholder="Ex.: na praça, perto da padaria" required
+                            data-erro="Conte onde você viu o animal" aria-describedby="pista-onde-erro">
+                        <p class="campo__erro" id="pista-onde-erro" aria-live="polite"></p>
+                    </div>
+                    <div class="campo">
+                        <label class="campo__rotulo" for="pista-quando">Quando?</label>
+                        <input class="campo__entrada" id="pista-quando" name="quando" type="date" required
+                            data-erro="Informe o dia em que você viu" aria-describedby="pista-quando-erro">
+                        <p class="campo__erro" id="pista-quando-erro" aria-live="polite"></p>
+                    </div>
+                    <div class="campo">
+                        <label class="campo__rotulo" for="pista-contato">Seu contato <span
+                                class="campo__opcional">(opcional)</span></label>
+                        <input class="campo__entrada" id="pista-contato" name="contato" type="text"
+                            placeholder="E-mail ou telefone">
+                    </div>
+                    <button class="botao botao--largo" type="submit">Enviar pista</button>
+                </form>
+
+                <div class="modal__sucesso" id="pista-sucesso" tabindex="-1" hidden>
+                    <span class="icone-bolha icone-bolha--sucesso icone-bolha--grande"><img src="assets/icons/achei.svg"
+                            alt="" width="44" height="44"></span>
+                    <h3>Obrigado por ajudar!</h3>
+                    <p id="pista-sucesso-texto"></p>
+                    <button class="botao" type="button" data-fechar>Voltar ao mural</button>
+                </div>
+            </div>
+        </dialog>
+    </main>
+
+    <footer class="rodape">
+        <div class="container rodape__grade">
+            <div class="rodape__marca">
+                <a class="marca marca--clara" href="index.html">
+                    <img class="marca__icone" src="assets/icons/PetAlerta.svg" alt="" width="44" height="44">
+                    <span class="marca__nome">Pet<span>Alerta</span></span>
+                </a>
+                <p>Tecnologia para a vizinhança cuidar dos seus animais. Grátis para quem perdeu ou achou.</p>
+            </div>
+            <nav class="rodape__navegacao" aria-label="Links do rodapé">
+                <div>
+                    <h2 class="rodape__titulo">Ajuda</h2>
+                    <ul class="rodape__links">
+                        <li><a href="pets.html">Pets perdidos</a></li>
+                        <li><a href="anunciar.html">Anunciar um animal</a></li>
+                        <li><a href="faq.html">Perguntas frequentes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="rodape__titulo">Projeto</h2>
+                    <ul class="rodape__links">
+                        <li><a href="sobre.html">Sobre o PetAlerta</a></li>
+                        <li><a href="integrantes.html">Integrantes</a></li>
+                        <li><a href="contato.html">Fale com a equipe</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="container rodape__base">
+            <p>Protótipo acadêmico da Global Solution 2026/2 (FIAP), tema CitizenTech. Os casos exibidos são fictícios.
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

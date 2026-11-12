@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Tire suas dúvidas sobre o PetAlerta: custo, privacidade, cruzamento de casos, mapa da busca, Telegram e parcerias.">
+    <meta name="theme-color" content="#0B5563">
+    <title>Perguntas frequentes — PetAlerta</title>
+    <link rel="icon" href="assets/icons/PetAlerta.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..800&display=swap">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/paginas.css">
+    <script src="js/menu.js" defer></script>
+    <script src="js/faq.js" defer></script>
+</head>
+
+<body>
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="cabecalho">
+        <div class="container cabecalho__interno">
+            <a class="marca" href="index.html">
+                <img class="marca__icone" src="assets/icons/PetAlerta.svg" alt="" width="44" height="44">
+                <span class="marca__nome">Pet<span>Alerta</span></span>
+            </a>
+
+            <button class="botao-menu" type="button" aria-label="Menu" aria-expanded="false"
+                aria-controls="menu-principal">
+                <span class="botao-menu__barra"></span>
+                <span class="botao-menu__barra"></span>
+                <span class="botao-menu__barra"></span>
+            </button>
+
+            <nav class="menu" id="menu-principal" aria-label="Menu principal">
+                <ul class="menu__lista">
+                    <li><a class="menu__link" href="index.html">Início</a></li>
+                    <li><a class="menu__link" href="pets.html">Pets Perdidos</a></li>
+                    <li><a class="menu__link" href="sobre.html">Sobre</a></li>
+                    <li><a class="menu__link" href="faq.html" aria-current="page">FAQ</a></li>
+                    <li><a class="menu__link" href="integrantes.html">Integrantes</a></li>
+                    <li><a class="menu__link" href="contato.html">Contato</a></li>
+                    <li><a class="menu__link menu__link--destaque" href="anunciar.html">Anunciar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo">
+        <section class="topo-pagina" aria-labelledby="titulo-pagina">
+            <div class="container topo-pagina__conteudo">
+                <p class="sobretitulo">Ajuda</p>
+                <h1 id="titulo-pagina">Perguntas frequentes</h1>
+                <p class="texto-apoio">Clique em uma pergunta para ver a resposta. Não achou sua dúvida? <a
+                        href="contato.html">Fale com a equipe</a>.</p>
+            </div>
+        </section>
+
+        <section class="secao secao--sem-topo">
+            <div class="container">
+                <div class="acordeao">
+                    <div class="acordeao__item">
+                        <h2 class="acordeao__titulo">
+                            <button class="acordeao__botao" type="button" id="pergunta-gratis" aria-expanded="false"
+                                aria-controls="resposta-gratis">
+                                O PetAlerta é gratuito?
+                                <span class="acordeao__sinal" aria-hidden="true"></span>
+                            </button>
+                        </h2>
+                        <div class="acordeao__resposta" id="resposta-gratis" role="region"
+                            aria-labelledby="pergunta-gratis" hidden>
+                            <p>Sim. Anunciar um animal perdido ou achado é gratuito, e o tutor nunca paga para ter mais
+                                alcance. A plataforma se sustenta com parcerias com clínicas, pet shops e prefeituras.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="acordeao__item">
+                        <h2 class="acordeao__titulo">
+                            <button class="acordeao__botao" type="button" id="pergunta-telefone" aria-expanded="false"
+                                aria-controls="resposta-telefone">
+                                Meu telefone vai aparecer no site?
+                                <span class="acordeao__sinal" aria-hidden="true"></span>
+                            </button>
+                        </h2>
+                        <div class="acordeao__resposta" id="resposta-telefone" role="region"
+                            aria-labelledby="pergunta-telefone" hidden>
+                            <p>Não. O mural mostra apenas o bairro do caso. Quando alguém informa que viu o animal, a
+                                mensagem chega a você pelo sistema, sem expor telefone ou endereço.</p>
+                        </div>
+                    </div>
+
+                    <div class="acordeao__item">
+                        <h2 class="acordeao__titulo">
+                            <button class="acordeao__botao" type="button" id="pergunta-combinacao" aria-expanded="false"
+                                aria-controls="resposta-combinacao">
+                                Como o site sabe que um animal achado pode ser o meu?
+                                <span class="acordeao__sinal" aria-hidden="true"></span>
+                            </button>
+                        </h2>
+                        <div class="acordeao__resposta" id="resposta-combinacao" role="region"
+                            aria-labelledby="pergunta-combinacao" hidden>
+                            <p>O sistema compara os casos abertos da mesma espécie e soma pontos: mesmo bairro (40),
+                                mesmo porte (20), mesma cor (20) e datas com até 7 dias de diferença (20). Com 60 pontos
+                                ou mais, o caso aparece como possível combinação.</p>
+                        </div>
+                    </div>
+
+                    <div class="acordeao__item">
+                        <h2 class="acordeao__titulo">
+                            <button class="acordeao__botao" type="button" id="pergunta-mapa" aria-expanded="false"
+                                aria-controls="resposta-mapa">
+                                Como o mapa calcula por onde o animal pode ter andado?
+                                <span class="acordeao__sinal" aria-hidden="true"></span>
+                            </button>
+                        </h2>
+                        <div class="acordeao__resposta fluxo" id="resposta-mapa" role="region"
+                            aria-labelledby="pergunta-mapa" hidden>
+                            <p>O círculo parte do último lugar onde o animal foi visto: o local do aviso ou o
+                                avistamento mais recente. O tamanho depende da espécie e cresce a cada dia sem notícias:
+                                gatos costumam ficar perto de casa, cachorros andam mais e aves podem voar longe.</p>
+                            <p>Cada avistamento marcado no mapa recomeça a conta a partir dele. Para um animal achado, o
+                                círculo mostra a área onde a família provavelmente mora. Neste protótipo, os valores são
+                                uma estimativa simplificada.</p>
+                        </div>
+                    </div>
+
+                    <div class="acordeao__item">
+                        <h2 class="acordeao__titulo">
+                            <button class="acordeao__botao" type="button" id="pergunta-achei" aria-expanded="false"
+                                aria-controls="resposta-achei">
+                                Encontrei um animal. Como ajudo a achar a família?
+                                <span class="acordeao__sinal" aria-hidden="true"></span>
+                            </button>
+                        </h2>
+                        <div class="acordeao__resposta" id="resposta-achei" role="region"
+                            aria-labelledby="pergunta-achei" hidden>
+                            <p>Deixe o animal em um lugar seguro, com água, e confira se ele tem coleira ou plaquinha.
+                                Uma clínica veterinária pode verificar se ele tem microchip. Depois, registre o caso no
+                                PetAlerta: o sistema compara com os animais perdidos e mostra no mapa a área onde a
+                                família deve morar. Obrigado por ajudar!</p>
+                        </div>
+                    </div>
+
+                    <div class="acordeao__item">
+                        <h2 class="acordeao__titulo">
+                            <button class="acordeao__botao" type="button" id="pergunta-ferido" aria-expanded="false"
+                                aria-controls="resposta-ferido">
+                                Achei um animal ferido. O que eu faço?
+                                <span class="acordeao__sinal" aria-hidden="true"></span>
+                            </button>
+                        </h2>
+                        <div class="acordeao__resposta" id="resposta-ferido" role="region"
+                            aria-labelledby="pergunta-ferido" hidden>
+                            <p>Registre o caso e descreva a situação. Casos de animais em risco são encaminhados a um
+                                parceiro da região, como ONG, clínica veterinária ou órgão público. Em emergência,
+                                procure a clínica mais próxima.</p>
+                        </div>
+                    </div>
+
+                    <div class="acordeao__item">
+                        <h2 class="acordeao__titulo">
+                            <button class="acordeao__botao" type="button" id="pergunta-telegram" aria-expanded="false"
+                                aria-controls="resposta-telegram">
+                                Posso anunciar pelo Telegram, inclusive mandando áudio?
+                                <span class="acordeao__sinal" aria-hidden="true"></span>
+                            </button>
+                        </h2>
+                        <div class="acordeao__resposta" id="resposta-telegram" role="region"
+                            aria-labelledby="pergunta-telegram" hidden>
+                            <p>Sim. Nosso assistente virtual atende pelo chat do site (texto) e pelo Telegram (texto e
+                                áudio). Basta contar o que aconteceu, e ele faz as perguntas necessárias.</p>
+                        </div>
+                    </div>
+
+                    <div class="acordeao__item">
+                        <h2 class="acordeao__titulo">
+                            <button class="acordeao__botao" type="button" id="pergunta-reencontro" aria-expanded="false"
+                                aria-controls="resposta-reencontro">
+                                O que acontece quando o animal é encontrado?
+                                <span class="acordeao__sinal" aria-hidden="true"></span>
+                            </button>
+                        </h2>
+                        <div class="acordeao__resposta" id="resposta-reencontro" role="region"
+                            aria-labelledby="pergunta-reencontro" hidden>
+                            <p>O caso muda para "Reencontrado", sai da lista de buscas e entra nos números de impacto do
+                                bairro.</p>
+                        </div>
+                    </div>
+
+                    <div class="acordeao__item">
+                        <h2 class="acordeao__titulo">
+                            <button class="acordeao__botao" type="button" id="pergunta-prazo" aria-expanded="false"
+                                aria-controls="resposta-prazo">
+                                Por quanto tempo o anúncio fica no ar?
+                                <span class="acordeao__sinal" aria-hidden="true"></span>
+                            </button>
+                        </h2>
+                        <div class="acordeao__resposta" id="resposta-prazo" role="region"
+                            aria-labelledby="pergunta-prazo" hidden>
+                            <p>O anúncio fica ativo enquanto o caso estiver aberto. De tempos em tempos, pedimos que
+                                você confirme se a busca continua.</p>
+                        </div>
+                    </div>
+
+                    <div class="acordeao__item">
+                        <h2 class="acordeao__titulo">
+                            <button class="acordeao__botao" type="button" id="pergunta-parceria" aria-expanded="false"
+                                aria-controls="resposta-parceria">
+                                Minha ONG ou clínica pode ser parceira?
+                                <span class="acordeao__sinal" aria-hidden="true"></span>
+                            </button>
+                        </h2>
+                        <div class="acordeao__resposta" id="resposta-parceria" role="region"
+                            aria-labelledby="pergunta-parceria" hidden>
+                            <p>Pode. Parceiros recebem os casos de animais em risco da sua região e ganham destaque
+                                local. Fale com a equipe pela <a href="contato.html">página de contato</a>.</p>
+                        </div>
+                    </div>
+
+                    <div class="acordeao__item">
+                        <h2 class="acordeao__titulo">
+                            <button class="acordeao__botao" type="button" id="pergunta-cidade" aria-expanded="false"
+                                aria-controls="resposta-cidade">
+                                O PetAlerta funciona na minha cidade?
+                                <span class="acordeao__sinal" aria-hidden="true"></span>
+                            </button>
+                        </h2>
+                        <div class="acordeao__resposta" id="resposta-cidade" role="region"
+                            aria-labelledby="pergunta-cidade" hidden>
+                            <p>Este é um protótipo acadêmico e, por enquanto, simula casos em bairros da cidade de São
+                                Paulo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container rodape__grade">
+            <div class="rodape__marca">
+                <a class="marca marca--clara" href="index.html">
+                    <img class="marca__icone" src="assets/icons/PetAlerta.svg" alt="" width="44" height="44">
+                    <span class="marca__nome">Pet<span>Alerta</span></span>
+                </a>
+                <p>Tecnologia para a vizinhança cuidar dos seus animais. Grátis para quem perdeu ou achou.</p>
+            </div>
+            <nav class="rodape__navegacao" aria-label="Links do rodapé">
+                <div>
+                    <h2 class="rodape__titulo">Ajuda</h2>
+                    <ul class="rodape__links">
+                        <li><a href="pets.html">Pets perdidos</a></li>
+                        <li><a href="anunciar.html">Anunciar um animal</a></li>
+                        <li><a href="faq.html">Perguntas frequentes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="rodape__titulo">Projeto</h2>
+                    <ul class="rodape__links">
+                        <li><a href="sobre.html">Sobre o PetAlerta</a></li>
+                        <li><a href="integrantes.html">Integrantes</a></li>
+                        <li><a href="contato.html">Fale com a equipe</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="container rodape__base">
+            <p>Protótipo acadêmico da Global Solution 2026/2 (FIAP), tema CitizenTech. Os casos exibidos são fictícios.
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

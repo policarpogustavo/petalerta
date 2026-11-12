@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="PetAlerta reúne animais perdidos, achados e em risco por bairro, sugere combinações, mostra no mapa por onde o animal pode ter andado e avisa a vizinhança. Gratuito para o tutor.">
+    <meta name="theme-color" content="#0B5563">
+    <title>PetAlerta — Perdeu ou achou um animal? Avise seu bairro</title>
+    <link rel="icon" href="assets/icons/PetAlerta.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..800&display=swap">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/paginas.css">
+    <script src="js/menu.js" defer></script>
+    <script src="js/dados.js" defer></script>
+    <script src="js/cards.js" defer></script>
+    <script src="js/inicio.js" defer></script>
+</head>
+
+<body>
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="cabecalho">
+        <div class="container cabecalho__interno">
+            <a class="marca" href="index.html">
+                <img class="marca__icone" src="assets/icons/PetAlerta.svg" alt="" width="44" height="44">
+                <span class="marca__nome">Pet<span>Alerta</span></span>
+            </a>
+
+            <button class="botao-menu" type="button" aria-label="Menu" aria-expanded="false"
+                aria-controls="menu-principal">
+                <span class="botao-menu__barra"></span>
+                <span class="botao-menu__barra"></span>
+                <span class="botao-menu__barra"></span>
+            </button>
+
+            <nav class="menu" id="menu-principal" aria-label="Menu principal">
+                <ul class="menu__lista">
+                    <li><a class="menu__link" href="index.html" aria-current="page">Início</a></li>
+                    <li><a class="menu__link" href="pets.html">Pets Perdidos</a></li>
+                    <li><a class="menu__link" href="sobre.html">Sobre</a></li>
+                    <li><a class="menu__link" href="faq.html">FAQ</a></li>
+                    <li><a class="menu__link" href="integrantes.html">Integrantes</a></li>
+                    <li><a class="menu__link" href="contato.html">Contato</a></li>
+                    <li><a class="menu__link menu__link--destaque" href="anunciar.html">Anunciar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo">
+        <!-- Abertura -->
+        <section class="hero" aria-labelledby="titulo-hero">
+            <div class="container hero__grade">
+                <div class="hero__texto">
+                    <p class="sobretitulo">Grátis para quem perdeu ou achou</p>
+                    <h1 id="titulo-hero">Perdeu ou achou um animal? <span class="hero__destaque">Seu bairro
+                            ajuda.</span></h1>
+                    <p class="texto-apoio">O PetAlerta compara avisos de animais perdidos e encontrados, mostra no mapa
+                        por onde eles podem ter andado e avisa quem mora por perto. Viu um animal em risco? Você também
+                        pode publicar um alerta.</p>
+                    <div class="hero__acoes">
+                        <a class="botao" href="anunciar.html?tipo=perdido">Perdi um animal</a>
+                        <a class="botao botao--secundario" href="anunciar.html?tipo=achado">Achei um animal</a>
+                    </div>
+                    <ul class="lista-check hero__garantias">
+                        <li>Grátis do aviso ao reencontro</li>
+                        <li>Seu telefone não aparece</li>
+                        <li>Alertas por bairro</li>
+                    </ul>
+                </div>
+
+                <div class="hero__ilustracao">
+                    <img src="assets/images/hero.svg"
+                        alt="Mapa de um bairro: um animal perdido e um animal achado ligados por um caminho tracejado"
+                        width="520" height="440">
+                    <p class="hero__balao hero__balao--visto" aria-hidden="true"><span class="selo"
+                            data-situacao="perdido">Perdido</span> Visto há 2 horas</p>
+                    <p class="hero__balao hero__balao--combina" aria-hidden="true">✓ 92% compatível</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como funciona -->
+        <section class="secao secao--clara" aria-labelledby="titulo-como-funciona">
+            <div class="container">
+                <header class="cabecalho-secao">
+                    <p class="sobretitulo">Como funciona</p>
+                    <h2 id="titulo-como-funciona">Do aviso ao reencontro em quatro passos</h2>
+                    <p class="texto-apoio">Publique seu aviso de graça pelo site ou pelo assistente virtual do
+                        PetAlerta.</p>
+                </header>
+
+                <ol class="passos">
+                    <li class="passo">
+                        <h3>Registre o caso</h3>
+                        <p>Informe espécie, porte, cor, bairro e data. Leva menos de dois minutos.</p>
+                    </li>
+                    <li class="passo">
+                        <h3>O sistema cruza</h3>
+                        <p>Comparamos animais perdidos e achados e mostramos as combinações mais parecidas.</p>
+                    </li>
+                    <li class="passo">
+                        <h3>A vizinhança ajuda</h3>
+                        <p>Moradores recebem o alerta, enviam avistamentos e o mapa mostra por onde o animal pode estar.
+                        </p>
+                    </li>
+                    <li class="passo">
+                        <h3>Reencontro</h3>
+                        <p>O contato é feito pelo sistema, sem expor seu telefone. O caso entra nos números de impacto.
+                        </p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Recursos -->
+        <section class="secao" aria-labelledby="titulo-recursos">
+            <div class="container">
+                <header class="cabecalho-secao">
+                    <p class="sobretitulo">Recursos</p>
+                    <h2 id="titulo-recursos">Como o PetAlerta ajuda seu bairro</h2>
+                    <p class="texto-apoio">Seu aviso pode ajudar uma família a reencontrar seu animal ou levar ajuda a
+                        um animal ferido ou abandonado.</p>
+                </header>
+
+                <ul class="grade grade--3">
+                    <li class="cartao recurso">
+                        <span class="icone-bolha"><img src="assets/icons/mapa.svg" alt="" width="34" height="34"></span>
+                        <h3>Mapa da área provável</h3>
+                        <p>Veja onde o animal foi visto, os avistamentos da vizinhança e a área por onde ele pode ter
+                            andado.</p>
+                    </li>
+                    <li class="cartao recurso">
+                        <span class="icone-bolha"><img src="assets/icons/combinacao.svg" alt="" width="34"
+                                height="34"></span>
+                        <h3>Combinações automáticas</h3>
+                        <p>Espécie, porte, cor, bairro e data viram uma porcentagem de semelhança entre perdidos e
+                            achados.</p>
+                    </li>
+                    <li class="cartao recurso">
+                        <span class="icone-bolha"><img src="assets/icons/chat.svg" alt="" width="34" height="34"></span>
+                        <h3>Conte por texto ou áudio</h3>
+                        <p>Pelo site ou pelo nosso aplicativo, escreva ou grave um áudio contando a aparência do animal,
+                            onde ele foi visto e qualquer detalhe que ajude.</p>
+                    </li>
+                    <li class="cartao recurso">
+                        <span class="icone-bolha"><img src="assets/icons/escudo.svg" alt="" width="34"
+                                height="34"></span>
+                        <h3>Seu contato fica privado</h3>
+                        <p>O mural mostra apenas o bairro. Quem tiver informações fala com você pelo PetAlerta, sem ver
+                            seu telefone ou endereço.</p>
+                    </li>
+                    <li class="cartao recurso">
+                        <span class="icone-bolha"><img src="assets/icons/alerta.svg" alt="" width="34"
+                                height="34"></span>
+                        <h3>Ajude um animal em risco</h3>
+                        <p>Viu um animal ferido ou abandonado? Envie um alerta: a plataforma encaminha o relato a ONGs,
+                            clínicas parceiras e órgãos públicos.</p>
+                    </li>
+                    <li class="cartao recurso">
+                        <span class="icone-bolha"><img src="assets/icons/saude.svg" alt="" width="34"
+                                height="34"></span>
+                        <h3>Campanhas de saúde no bairro</h3>
+                        <p>Os relatos ajudam a prefeitura a ver onde há mais casos e a planejar castração e prevenção de
+                            zoonoses.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Impacto -->
+        <section class="secao secao--marca" aria-labelledby="titulo-impacto">
+            <div class="container">
+                <header class="cabecalho-secao cabecalho-secao--centro">
+                    <p class="sobretitulo">Impacto no bairro</p>
+                    <h2 id="titulo-impacto">O que a vizinhança já conseguiu</h2>
+                </header>
+
+                <dl class="numeros">
+                    <div class="numero">
+                        <dt>animais cadastrados</dt>
+                        <dd>128</dd>
+                    </div>
+                    <div class="numero">
+                        <dt>reencontros</dt>
+                        <dd>80</dd>
+                    </div>
+                    <div class="numero">
+                        <dt>em média até o reencontro</dt>
+                        <dd>3 dias</dd>
+                    </div>
+                    <div class="numero">
+                        <dt>animais encaminhados a parceiros</dt>
+                        <dd>19</dd>
+                    </div>
+                </dl>
+                <p class="nota">Números de simulação, usados para demonstrar o painel de impacto do protótipo.</p>
+            </div>
+        </section>
+
+        <!-- Quem acha também salva -->
+        <section class="secao quem-acha" id="quem-acha" aria-labelledby="titulo-quem-acha">
+            <div class="container quem-acha__grade">
+                <div class="quem-acha__texto">
+                    <p class="sobretitulo">Para quem encontrou um animal</p>
+                    <h2 id="titulo-quem-acha">Você achou um animal. Alguém está procurando por ele agora.</h2>
+                    <p class="texto-apoio">Do outro lado, uma família espalha cartazes, chama pelo nome e confere o
+                        celular a cada minuto. Quando você registra o animal no PetAlerta, o seu gesto vira a pista que
+                        faltava para esse reencontro.</p>
+
+                    <ul class="quem-acha__impactos">
+                        <li class="cartao icone-texto impacto">
+                            <span class="icone-bolha icone-bolha--acao"><img src="assets/icons/casa.svg" alt=""
+                                    width="34" height="34"></span>
+                            <div>
+                                <h3>Devolve alguém à família</h3>
+                                <p>Para muita gente, principalmente quem mora sozinho, o animal é a principal companhia.
+                                    Seu aviso encurta essa espera.</p>
+                            </div>
+                        </li>
+                        <li class="cartao icone-texto impacto">
+                            <span class="icone-bolha icone-bolha--acao"><img src="assets/icons/escudo.svg" alt=""
+                                    width="34" height="34"></span>
+                            <div>
+                                <h3>Tira o animal do perigo</h3>
+                                <p>Longe da rua, ele fica protegido de atropelamentos, fome e frio enquanto a família
+                                    não chega.</p>
+                            </div>
+                        </li>
+                        <li class="cartao icone-texto impacto">
+                            <span class="icone-bolha icone-bolha--acao"><img src="assets/icons/mapa.svg" alt=""
+                                    width="34" height="34"></span>
+                            <div>
+                                <h3>Mostra onde a família deve estar</h3>
+                                <p>O sistema compara seu aviso com os animais perdidos na hora e marca no mapa a área
+                                    onde a família provavelmente mora.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="quem-acha__acoes">
+                        <a class="botao" href="anunciar.html?tipo=achado">Achei um animal</a>
+                        <a class="botao botao--fantasma" href="pets.html?situacao=perdido">Ver quem está sendo
+                            procurado</a>
+                    </div>
+                </div>
+
+                <div class="quem-acha__lado">
+                    <figure class="cartao depoimento">
+                        <p class="selo-vizinho"><img src="assets/icons/achei.svg" alt="" width="28" height="28">Vizinho
+                            do bem</p>
+                        <blockquote>
+                            <p>“Um gato laranja apareceu no meu quintal. Registrei no PetAlerta e, no mesmo dia, o
+                                sistema mostrou que ele combinava com o Garfield, perdido a poucas ruas daqui. Ver o
+                                reencontro valeu a semana.”</p>
+                        </blockquote>
+                        <figcaption><strong>Marcos</strong>, morador de Santana <small>História ilustrativa, criada para
+                                o protótipo.</small></figcaption>
+                    </figure>
+
+                    <article class="cartao quem-acha__passos">
+                        <h3>Achou um animal? Faça assim</h3>
+                        <ol class="lista-numerada">
+                            <li>Deixe o animal em um lugar seguro, com água.</li>
+                            <li>Veja se há coleira ou plaquinha com contato.</li>
+                            <li>Peça a uma clínica veterinária para conferir se ele tem microchip.</li>
+                            <li>Registre no PetAlerta com o bairro e a data.</li>
+                        </ol>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Procurados agora -->
+        <section class="secao secao--clara" aria-labelledby="titulo-procurados">
+            <div class="container">
+                <div class="procurados__topo">
+                    <header class="cabecalho-secao">
+                        <p class="sobretitulo">Mural da vizinhança</p>
+                        <h2 id="titulo-procurados">Reconhece algum destes animais?</h2>
+                        <p class="texto-apoio">Uma pista sua pode ser a que faltava para o reencontro.</p>
+                    </header>
+                    <a class="botao botao--secundario" href="pets.html">Ver o mural completo</a>
+                </div>
+
+                <ul class="grade grade--3" id="procurados"></ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container rodape__grade">
+            <div class="rodape__marca">
+                <a class="marca marca--clara" href="index.html">
+                    <img class="marca__icone" src="assets/icons/PetAlerta.svg" alt="" width="44" height="44">
+                    <span class="marca__nome">Pet<span>Alerta</span></span>
+                </a>
+                <p>Tecnologia para a vizinhança cuidar dos seus animais. Grátis para quem perdeu ou achou.</p>
+            </div>
+            <nav class="rodape__navegacao" aria-label="Links do rodapé">
+                <div>
+                    <h2 class="rodape__titulo">Ajuda</h2>
+                    <ul class="rodape__links">
+                        <li><a href="pets.html">Mural de animais</a></li>
+                        <li><a href="anunciar.html">Anunciar um animal</a></li>
+                        <li><a href="faq.html">Perguntas frequentes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="rodape__titulo">Projeto</h2>
+                    <ul class="rodape__links">
+                        <li><a href="sobre.html">Sobre o PetAlerta</a></li>
+                        <li><a href="integrantes.html">Integrantes</a></li>
+                        <li><a href="contato.html">Fale com a equipe</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="container rodape__base">
+            <p>Protótipo acadêmico da Global Solution 2026/2 (FIAP), tema CitizenTech. Os casos exibidos são fictícios.
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Conheça o problema, a solução e o impacto do PetAlerta, projeto da Global Solution 2026/2 da FIAP com o tema CitizenTech.">
+    <meta name="theme-color" content="#0B5563">
+    <title>Sobre o projeto — PetAlerta</title>
+    <link rel="icon" href="assets/icons/PetAlerta.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..800&display=swap">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/paginas.css">
+    <script src="js/menu.js" defer></script>
+    <script src="js/sobre.js" defer></script>
+</head>
+
+<body>
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="cabecalho">
+        <div class="container cabecalho__interno">
+            <a class="marca" href="index.html">
+                <img class="marca__icone" src="assets/icons/PetAlerta.svg" alt="" width="44" height="44">
+                <span class="marca__nome">Pet<span>Alerta</span></span>
+            </a>
+
+            <button class="botao-menu" type="button" aria-label="Menu" aria-expanded="false"
+                aria-controls="menu-principal">
+                <span class="botao-menu__barra"></span>
+                <span class="botao-menu__barra"></span>
+                <span class="botao-menu__barra"></span>
+            </button>
+
+            <nav class="menu" id="menu-principal" aria-label="Menu principal">
+                <ul class="menu__lista">
+                    <li><a class="menu__link" href="index.html">Início</a></li>
+                    <li><a class="menu__link" href="pets.html">Pets perdidos</a></li>
+                    <li><a class="menu__link" href="sobre.html" aria-current="page">Sobre</a></li>
+                    <li><a class="menu__link" href="faq.html">FAQ</a></li>
+                    <li><a class="menu__link" href="integrantes.html">Integrantes</a></li>
+                    <li><a class="menu__link" href="contato.html">Contato</a></li>
+                    <li><a class="menu__link menu__link--destaque" href="anunciar.html">Anunciar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo">
+        <section class="topo-pagina" aria-labelledby="titulo-pagina">
+            <div class="container topo-pagina__conteudo">
+                <p class="sobretitulo">Global Solution 2026/2 · CitizenTech</p>
+                <h1 id="titulo-pagina">Sobre o projeto</h1>
+                <p class="texto-apoio">O PetAlerta é uma plataforma para registrar, buscar e reencontrar animais
+                    perdidos, achados ou em risco, organizada por bairro. Foi criado por estudantes da FIAP com o tema
+                    CitizenTech: tecnologia com o cidadão no centro.</p>
+            </div>
+        </section>
+
+        <section class="secao secao--sem-topo">
+            <div class="container">
+                <div class="abas__lista" role="tablist" aria-label="Sobre o PetAlerta">
+                    <button class="abas__botao" type="button" role="tab" id="aba-problema"
+                        aria-controls="painel-problema" aria-selected="true">Problema</button>
+                    <button class="abas__botao" type="button" role="tab" id="aba-solucao" aria-controls="painel-solucao"
+                        aria-selected="false">Solução</button>
+                    <button class="abas__botao" type="button" role="tab" id="aba-impacto" aria-controls="painel-impacto"
+                        aria-selected="false">Impacto</button>
+                </div>
+
+                <section class="cartao abas__painel" id="painel-problema" role="tabpanel"
+                    aria-labelledby="aba-problema">
+                    <div class="abas__cabecalho">
+                        <span class="icone-bolha icone-bolha--acao"><img src="assets/icons/perdi.svg" alt="" width="34"
+                                height="34"></span>
+                        <h2>O problema</h2>
+                    </div>
+                    <p>Quando um animal some, o tutor publica em vários grupos de WhatsApp e redes sociais, e a
+                        informação se perde em poucas horas. Quem encontra um animal na rua não sabe a quem avisar.</p>
+                    <p>Animais abandonados ou feridos ficam sem acompanhamento, o que também é uma questão de saúde
+                        pública: aumenta o risco de zoonoses e de acidentes de trânsito.</p>
+                    <p>Para muitas pessoas, principalmente idosos que moram sozinhos, o animal é a principal companhia.
+                        Falta um lugar único, simples e organizado por região.</p>
+                </section>
+
+                <section class="cartao abas__painel" id="painel-solucao" role="tabpanel" aria-labelledby="aba-solucao"
+                    hidden>
+                    <div class="abas__cabecalho">
+                        <span class="icone-bolha"><img src="assets/icons/combinacao.svg" alt="" width="34"
+                                height="34"></span>
+                        <h2>A solução</h2>
+                    </div>
+                    <p><strong>Objetivo:</strong> diminuir o tempo até o reencontro e dar um destino aos animais em
+                        risco, usando a própria vizinhança como rede de apoio.</p>
+                    <p><strong>Proposta da equipe:</strong> o cidadão registra o caso pelo site ou pelo assistente
+                        virtual (Webchat e Telegram, com texto ou áudio). O sistema cruza os casos de "perdido" e
+                        "achado" e sugere combinações.</p>
+                    <ul class="lista-check">
+                        <li>O mapa da busca mostra os avistamentos e a área por onde o animal pode ter andado.</li>
+                        <li>O tutor nunca paga: quem sustenta a plataforma são clínicas, pet shops e prefeituras
+                            parceiras.</li>
+                        <li>Telefone e endereço nunca aparecem publicamente. O contato passa pelo sistema.</li>
+                        <li>Casos de animais em risco são encaminhados a ONGs, clínicas e órgãos públicos.</li>
+                        <li>Textos simples, bom contraste e áudio no Telegram para quem tem dificuldade com tecnologia.
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="cartao abas__painel" id="painel-impacto" role="tabpanel" aria-labelledby="aba-impacto"
+                    hidden>
+                    <div class="abas__cabecalho">
+                        <span class="icone-bolha icone-bolha--sucesso"><img src="assets/icons/casa.svg" alt=""
+                                width="34" height="34"></span>
+                        <h2>O impacto</h2>
+                    </div>
+                    <p>Medimos o resultado por quatro indicadores: animais cadastrados e reencontrados, tempo médio até
+                        o reencontro, bairros com mais casos e animais encaminhados a parceiros.</p>
+                    <p>Esses dados, reunidos por bairro, ajudam a prefeitura a planejar campanhas de castração e ações
+                        de controle de zoonoses.</p>
+                    <div class="ods">
+                        <article class="icone-texto ods__item ods__item--3">
+                            <span class="ods__numero" aria-hidden="true">3</span>
+                            <div>
+                                <h3>ODS 3 — Saúde e bem-estar</h3>
+                                <p>Apoia o bem-estar emocional dos tutores e a prevenção de zoonoses, ao dar
+                                    encaminhamento a animais abandonados.</p>
+                            </div>
+                        </article>
+                        <article class="icone-texto ods__item ods__item--11">
+                            <span class="ods__numero" aria-hidden="true">11</span>
+                            <div>
+                                <h3>ODS 11 — Cidades e comunidades sustentáveis</h3>
+                                <p>Fortalece a colaboração entre vizinhos, ONGs e poder público no cuidado com os
+                                    espaços e a vida do bairro.</p>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container rodape__grade">
+            <div class="rodape__marca">
+                <a class="marca marca--clara" href="index.html">
+                    <img class="marca__icone" src="assets/icons/PetAlerta.svg" alt="" width="44" height="44">
+                    <span class="marca__nome">Pet<span>Alerta</span></span>
+                </a>
+                <p>Tecnologia para a vizinhança cuidar dos seus animais. Grátis para quem perdeu ou achou.</p>
+            </div>
+            <nav class="rodape__navegacao" aria-label="Links do rodapé">
+                <div>
+                    <h2 class="rodape__titulo">Ajuda</h2>
+                    <ul class="rodape__links">
+                        <li><a href="pets.html">Pets perdidos</a></li>
+                        <li><a href="anunciar.html">Anunciar um animal</a></li>
+                        <li><a href="faq.html">Perguntas frequentes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="rodape__titulo">Projeto</h2>
+                    <ul class="rodape__links">
+                        <li><a href="sobre.html">Sobre o PetAlerta</a></li>
+                        <li><a href="integrantes.html">Integrantes</a></li>
+                        <li><a href="contato.html">Fale com a equipe</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="container rodape__base">
+            <p>Protótipo acadêmico da Global Solution 2026/2 (FIAP), tema CitizenTech. Os casos exibidos são fictícios.
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

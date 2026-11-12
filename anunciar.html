@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Registre um animal perdido ou achado e veja na hora as possíveis combinações do seu bairro.">
+    <meta name="theme-color" content="#0B5563">
+    <title>Anunciar um animal — PetAlerta</title>
+    <link rel="icon" href="assets/icons/PetAlerta.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..800&display=swap">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/paginas.css">
+    <script src="js/menu.js" defer></script>
+    <script src="js/dados.js" defer></script>
+    <script src="js/cruzamento.js" defer></script>
+    <script src="js/cards.js" defer></script>
+    <script src="js/validacao.js" defer></script>
+    <script src="js/anunciar.js" defer></script>
+</head>
+
+<body>
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="cabecalho">
+        <div class="container cabecalho__interno">
+            <a class="marca" href="index.html">
+                <img class="marca__icone" src="assets/icons/PetAlerta.svg" alt="" width="44" height="44">
+                <span class="marca__nome">Pet<span>Alerta</span></span>
+            </a>
+
+            <button class="botao-menu" type="button" aria-label="Menu" aria-expanded="false"
+                aria-controls="menu-principal">
+                <span class="botao-menu__barra"></span>
+                <span class="botao-menu__barra"></span>
+                <span class="botao-menu__barra"></span>
+            </button>
+
+            <nav class="menu" id="menu-principal" aria-label="Menu principal">
+                <ul class="menu__lista">
+                    <li><a class="menu__link" href="index.html">Início</a></li>
+                    <li><a class="menu__link" href="pets.html">Pets Perdidos</a></li>
+                    <li><a class="menu__link" href="sobre.html">Sobre</a></li>
+                    <li><a class="menu__link" href="faq.html">FAQ</a></li>
+                    <li><a class="menu__link" href="integrantes.html">Integrantes</a></li>
+                    <li><a class="menu__link" href="contato.html">Contato</a></li>
+                    <li><a class="menu__link menu__link--destaque" href="anunciar.html" aria-current="page">Anunciar</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo">
+        <section class="topo-pagina" aria-labelledby="titulo-pagina">
+            <div class="container topo-pagina__conteudo">
+                <p class="sobretitulo">É grátis e leva dois minutos</p>
+                <h1 id="titulo-pagina">Anunciar um animal</h1>
+                <p class="texto-apoio">Preencha os dados e veja na hora se já existe um caso parecido no seu bairro. Seu
+                    telefone não aparece no site.</p>
+            </div>
+        </section>
+
+        <section class="secao secao--sem-topo">
+            <div class="container anunciar">
+                <form class="cartao formulario" id="form-anuncio" novalidate>
+                    <fieldset class="formulario__grupo">
+                        <legend class="formulario__legenda">O que aconteceu?</legend>
+                        <div class="escolha">
+                            <div class="escolha__opcao">
+                                <input class="escolha__radio" type="radio" name="tipo" id="tipo-perdido" value="perdido"
+                                    required data-erro="Escolha se você perdeu ou achou um animal"
+                                    aria-describedby="tipo-erro">
+                                <label class="escolha__rotulo" for="tipo-perdido">
+                                    <span class="icone-bolha"><img src="assets/icons/perdi.svg" alt="" width="34"
+                                            height="34"></span>
+                                    <span class="escolha__texto"><strong>Perdi um animal</strong><small>Vamos avisar
+                                            quem mora perto</small></span>
+                                </label>
+                            </div>
+                            <div class="escolha__opcao">
+                                <input class="escolha__radio" type="radio" name="tipo" id="tipo-achado" value="achado"
+                                    required data-erro="Escolha se você perdeu ou achou um animal"
+                                    aria-describedby="tipo-erro">
+                                <label class="escolha__rotulo" for="tipo-achado">
+                                    <span class="icone-bolha icone-bolha--acao"><img src="assets/icons/achei.svg" alt=""
+                                            width="34" height="34"></span>
+                                    <span class="escolha__texto"><strong>Achei um animal</strong><small>Vamos procurar a
+                                            família</small></span>
+                                </label>
+                            </div>
+                        </div>
+                        <p class="campo__erro" id="tipo-erro" aria-live="polite"></p>
+                    </fieldset>
+
+                    <!-- Só aparece para quem escolheu "Achei" -->
+                    <aside class="icone-texto agradecimento" data-mostrar-se="achado" hidden>
+                        <span class="icone-bolha icone-bolha--acao"><img src="assets/icons/achei.svg" alt="" width="34"
+                                height="34"></span>
+                        <div>
+                            <h3>Obrigado por parar para ajudar!</h3>
+                            <p>Quem perdeu este animal pode estar procurando por ele agora mesmo. Seu aviso pode ser a
+                                pista que falta para esse reencontro.</p>
+                        </div>
+                    </aside>
+
+                    <fieldset class="formulario__grupo">
+                        <legend class="formulario__legenda">Sobre o animal</legend>
+
+                        <div class="campo" data-mostrar-se="perdido" hidden>
+                            <label class="campo__rotulo" for="anuncio-nome">Nome do animal <span
+                                    class="campo__opcional">(opcional)</span></label>
+                            <input class="campo__entrada" id="anuncio-nome" name="nome" type="text">
+                        </div>
+
+                        <div class="formulario__linha">
+                            <div class="campo">
+                                <label class="campo__rotulo" for="anuncio-especie">Espécie</label>
+                                <select class="campo__entrada" id="anuncio-especie" name="especie" required
+                                    data-erro="Escolha a espécie" aria-describedby="anuncio-especie-erro">
+                                    <option value="">Escolha</option>
+                                    <option value="cachorro">Cachorro</option>
+                                    <option value="gato">Gato</option>
+                                    <option value="ave">Ave</option>
+                                </select>
+                                <p class="campo__erro" id="anuncio-especie-erro" aria-live="polite"></p>
+                            </div>
+                            <div class="campo">
+                                <label class="campo__rotulo" for="anuncio-porte">Porte</label>
+                                <select class="campo__entrada" id="anuncio-porte" name="porte" required
+                                    data-erro="Escolha o porte" aria-describedby="anuncio-porte-erro">
+                                    <option value="">Escolha</option>
+                                    <option value="pequeno">Pequeno</option>
+                                    <option value="medio">Médio</option>
+                                    <option value="grande">Grande</option>
+                                </select>
+                                <p class="campo__erro" id="anuncio-porte-erro" aria-live="polite"></p>
+                            </div>
+                        </div>
+
+                        <div class="formulario__linha">
+                            <div class="campo">
+                                <label class="campo__rotulo" for="anuncio-cor">Cor principal</label>
+                                <select class="campo__entrada" id="anuncio-cor" name="cor" required
+                                    data-erro="Escolha a cor principal" aria-describedby="anuncio-cor-erro">
+                                    <option value="">Escolha</option>
+                                    <option value="caramelo">Caramelo</option>
+                                    <option value="preto">Preto</option>
+                                    <option value="branco">Branco</option>
+                                    <option value="cinza">Cinza</option>
+                                    <option value="laranja">Laranja</option>
+                                    <option value="malhado">Malhado</option>
+                                    <option value="verde">Verde</option>
+                                </select>
+                                <p class="campo__erro" id="anuncio-cor-erro" aria-live="polite"></p>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="formulario__grupo">
+                        <legend class="formulario__legenda">Onde e quando</legend>
+
+                        <div class="formulario__linha">
+                            <div class="campo">
+                                <label class="campo__rotulo" for="anuncio-bairro">Bairro</label>
+                                <select class="campo__entrada" id="anuncio-bairro" name="bairro" required
+                                    data-erro="Escolha o bairro" aria-describedby="anuncio-bairro-erro">
+                                    <option value="">Escolha</option>
+                                    <option value="Butantã">Butantã</option>
+                                    <option value="Mooca">Mooca</option>
+                                    <option value="Pinheiros">Pinheiros</option>
+                                    <option value="Santana">Santana</option>
+                                    <option value="Tatuapé">Tatuapé</option>
+                                    <option value="Vila Mariana">Vila Mariana</option>
+                                </select>
+                                <p class="campo__erro" id="anuncio-bairro-erro" aria-live="polite"></p>
+                            </div>
+                            <div class="campo">
+                                <label class="campo__rotulo" for="anuncio-data" id="rotulo-data">Quando ele
+                                    sumiu?</label>
+                                <input class="campo__entrada" id="anuncio-data" name="data" type="date" required
+                                    data-erro="Informe a data" aria-describedby="anuncio-data-erro">
+                                <p class="campo__erro" id="anuncio-data-erro" aria-live="polite"></p>
+                            </div>
+                        </div>
+
+                        <div class="campo" data-mostrar-se="achado" hidden>
+                            <label class="campo__rotulo" for="anuncio-local">Onde ele está agora? <span
+                                    class="campo__opcional">(opcional)</span></label>
+                            <input class="campo__entrada" id="anuncio-local" name="local" type="text"
+                                placeholder="Ex.: abrigado na minha casa">
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="formulario__grupo">
+                        <legend class="formulario__legenda">Detalhes</legend>
+                        <div class="campo">
+                            <label class="campo__rotulo" for="anuncio-descricao">Descrição <span
+                                    class="campo__opcional">(opcional)</span></label>
+                            <textarea class="campo__entrada" id="anuncio-descricao" name="descricao"
+                                placeholder="Coleira, manchas, comportamento..."></textarea>
+                        </div>
+                    </fieldset>
+
+                    <button class="botao botao--largo" type="submit">Registrar e buscar combinações</button>
+                </form>
+
+                <aside class="anunciar__lado" aria-label="Dicas">
+                    <div class="cartao cartao--suave">
+                        <h2>Dicas para um bom aviso</h2>
+                        <ul class="lista-check">
+                            <li>Escolha a cor que mais aparece no pelo ou nas penas.</li>
+                            <li>Conte o que só quem conhece o animal saberia: manchas, coleira, jeito.</li>
+                            <li>Use a data em que o animal foi visto pela última vez.</li>
+                        </ul>
+                    </div>
+                    <div class="cartao cartao--suave">
+                        <h2>Seu contato fica protegido</h2>
+                        <p>O mural mostra só o bairro. Quem tiver uma pista fala com você pelo PetAlerta, sem ver seu
+                            telefone ou endereço.</p>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="container">
+                <section class="resultado" id="resultado" tabindex="-1" aria-labelledby="resultado-titulo" hidden>
+                    <div class="resultado__topo">
+                        <span class="icone-bolha icone-bolha--grande" id="resultado-icone"><img
+                                src="assets/icons/perdi.svg" alt="" width="44" height="44"></span>
+                        <h2 id="resultado-titulo"></h2>
+                    </div>
+                    <p class="mensagem" id="resultado-texto"></p>
+                    <ul class="grade grade--cards" id="resultado-cards"></ul>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container rodape__grade">
+            <div class="rodape__marca">
+                <a class="marca marca--clara" href="index.html">
+                    <img class="marca__icone" src="assets/icons/PetAlerta.svg" alt="" width="44" height="44">
+                    <span class="marca__nome">Pet<span>Alerta</span></span>
+                </a>
+                <p>Tecnologia para a vizinhança cuidar dos seus animais. Grátis para quem perdeu ou achou.</p>
+            </div>
+            <nav class="rodape__navegacao" aria-label="Links do rodapé">
+                <div>
+                    <h2 class="rodape__titulo">Ajuda</h2>
+                    <ul class="rodape__links">
+                        <li><a href="pets.html">Pets perdidos</a></li>
+                        <li><a href="anunciar.html">Anunciar um animal</a></li>
+                        <li><a href="faq.html">Perguntas frequentes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="rodape__titulo">Projeto</h2>
+                    <ul class="rodape__links">
+                        <li><a href="sobre.html">Sobre o PetAlerta</a></li>
+                        <li><a href="integrantes.html">Integrantes</a></li>
+                        <li><a href="contato.html">Fale com a equipe</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="container rodape__base">
+            <p>Protótipo acadêmico da Global Solution 2026/2 (FIAP), tema CitizenTech. Os casos exibidos são fictícios.
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>

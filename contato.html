@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Fale com a equipe do PetAlerta: dúvidas, parcerias com ONGs e clínicas, problemas com anúncios.">
+    <meta name="theme-color" content="#0B5563">
+    <title>Contato — PetAlerta</title>
+    <link rel="icon" href="assets/icons/PetAlerta.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..800&display=swap">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/paginas.css">
+    <script src="js/menu.js" defer></script>
+    <script src="js/validacao.js" defer></script>
+    <script src="js/contato.js" defer></script>
+</head>
+
+<body>
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="cabecalho">
+        <div class="container cabecalho__interno">
+            <a class="marca" href="index.html">
+                <img class="marca__icone" src="assets/icons/PetAlerta.svg" alt="" width="44" height="44">
+                <span class="marca__nome">Pet<span>Alerta</span></span>
+            </a>
+
+            <button class="botao-menu" type="button" aria-label="Menu" aria-expanded="false"
+                aria-controls="menu-principal">
+                <span class="botao-menu__barra"></span>
+                <span class="botao-menu__barra"></span>
+                <span class="botao-menu__barra"></span>
+            </button>
+
+            <nav class="menu" id="menu-principal" aria-label="Menu principal">
+                <ul class="menu__lista">
+                    <li><a class="menu__link" href="index.html">Início</a></li>
+                    <li><a class="menu__link" href="pets.html">Pets Perdidos</a></li>
+                    <li><a class="menu__link" href="sobre.html">Sobre</a></li>
+                    <li><a class="menu__link" href="faq.html">FAQ</a></li>
+                    <li><a class="menu__link" href="integrantes.html">Integrantes</a></li>
+                    <li><a class="menu__link" href="contato.html" aria-current="page">Contato</a></li>
+                    <li><a class="menu__link menu__link--destaque" href="anunciar.html">Anunciar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo">
+        <section class="topo-pagina" aria-labelledby="titulo-pagina">
+            <div class="container topo-pagina__conteudo">
+                <p class="sobretitulo">Fale com a equipe</p>
+                <h1 id="titulo-pagina">Contato</h1>
+                <p class="texto-apoio">Dúvidas, sugestões ou interesse em ser parceiro? Escreva para a equipe. Todos os
+                    campos são obrigatórios.</p>
+            </div>
+        </section>
+
+        <section class="secao secao--sem-topo">
+            <div class="container contato">
+                <form class="cartao formulario" id="form-contato" novalidate>
+                    <div class="formulario__linha">
+                        <div class="campo">
+                            <label class="campo__rotulo" for="contato-nome">Nome</label>
+                            <input class="campo__entrada" id="contato-nome" name="nome" type="text" autocomplete="name"
+                                required data-erro="Informe seu nome" aria-describedby="contato-nome-erro">
+                            <p class="campo__erro" id="contato-nome-erro" aria-live="polite"></p>
+                        </div>
+                        <div class="campo">
+                            <label class="campo__rotulo" for="contato-email">E-mail</label>
+                            <input class="campo__entrada" id="contato-email" name="email" type="email"
+                                autocomplete="email" placeholder="nome@exemplo.com" required
+                                data-erro="Informe seu e-mail" aria-describedby="contato-email-erro">
+                            <p class="campo__erro" id="contato-email-erro" aria-live="polite"></p>
+                        </div>
+                    </div>
+                    <div class="campo">
+                        <label class="campo__rotulo" for="contato-assunto">Assunto</label>
+                        <select class="campo__entrada" id="contato-assunto" name="assunto" required
+                            data-erro="Escolha um assunto" aria-describedby="contato-assunto-erro">
+                            <option value="">Escolha</option>
+                            <option value="duvida">Dúvida sobre o PetAlerta</option>
+                            <option value="anuncio">Problema com um anúncio</option>
+                            <option value="parceria">Quero ser parceiro (ONG, clínica, pet shop)</option>
+                            <option value="prefeitura">Sou do poder público</option>
+                            <option value="outro">Outro assunto</option>
+                        </select>
+                        <p class="campo__erro" id="contato-assunto-erro" aria-live="polite"></p>
+                    </div>
+                    <div class="campo">
+                        <label class="campo__rotulo" for="contato-mensagem">Mensagem</label>
+                        <textarea class="campo__entrada" id="contato-mensagem" name="mensagem" required
+                            data-erro="Escreva sua mensagem" aria-describedby="contato-mensagem-erro"></textarea>
+                        <p class="campo__erro" id="contato-mensagem-erro" aria-live="polite"></p>
+                    </div>
+                    <button class="botao botao--largo" type="submit">Enviar mensagem</button>
+                    <p class="mensagem mensagem--sucesso" id="contato-sucesso" tabindex="-1" role="status" hidden>
+                        Mensagem enviada! Respondemos em até 2 dias úteis.</p>
+                </form>
+
+                <aside aria-label="Outros assuntos">
+                    <ul class="canais">
+                        <li class="cartao icone-texto canal">
+                            <span class="icone-bolha"><img src="assets/icons/chat.svg" alt="" width="34"
+                                    height="34"></span>
+                            <div>
+                                <h2>Dúvidas e sugestões</h2>
+                                <p>Conte o que podemos melhorar. Respondemos em até 2 dias úteis.</p>
+                            </div>
+                        </li>
+                        <li class="cartao icone-texto canal">
+                            <span class="icone-bolha"><img src="assets/icons/loja.svg" alt="" width="34"
+                                    height="34"></span>
+                            <div>
+                                <h2>ONGs, clínicas e pet shops</h2>
+                                <p>Quer receber os casos de animais em risco da sua região? Escolha o assunto "Quero ser
+                                    parceiro".</p>
+                            </div>
+                        </li>
+                        <li class="cartao icone-texto canal canal--alerta">
+                            <span class="icone-bolha icone-bolha--acao"><img src="assets/icons/alerta.svg" alt=""
+                                    width="34" height="34"></span>
+                            <div>
+                                <h2>Emergência com um animal?</h2>
+                                <p>Não espere a nossa resposta: procure a clínica veterinária mais próxima.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <div class="container rodape__grade">
+            <div class="rodape__marca">
+                <a class="marca marca--clara" href="index.html">
+                    <img class="marca__icone" src="assets/icons/PetAlerta.svg" alt="" width="44" height="44">
+                    <span class="marca__nome">Pet<span>Alerta</span></span>
+                </a>
+                <p>Tecnologia para a vizinhança cuidar dos seus animais. Grátis para quem perdeu ou achou.</p>
+            </div>
+            <nav class="rodape__navegacao" aria-label="Links do rodapé">
+                <div>
+                    <h2 class="rodape__titulo">Ajuda</h2>
+                    <ul class="rodape__links">
+                        <li><a href="pets.html">Pets Perdidos</a></li>
+                        <li><a href="anunciar.html">Anunciar um animal</a></li>
+                        <li><a href="faq.html">Perguntas frequentes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="rodape__titulo">Projeto</h2>
+                    <ul class="rodape__links">
+                        <li><a href="sobre.html">Sobre o PetAlerta</a></li>
+                        <li><a href="integrantes.html">Integrantes</a></li>
+                        <li><a href="contato.html">Fale com a equipe</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="container rodape__base">
+            <p>Protótipo acadêmico da Global Solution 2026/2 (FIAP), tema CitizenTech. Os casos exibidos são fictícios.
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>
