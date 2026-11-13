@@ -1,0 +1,630 @@
+/* ==========================================================
+    PetAlerta — paginas.css
+    Seções que aparecem em uma página só.
+    1. Topo das páginas   2. Início   3. Mural   4. Anunciar
+    5. Sobre              6. Integrantes        7. Contato
+   ========================================================== */
+
+/* ---------- 1. Topo das páginas internas ---------- */
+.topo-pagina {
+    padding-block: var(--espaco-7) var(--espaco-6);
+    background:
+        radial-gradient(50rem 18rem at 100% 0%, var(--laranja-50), transparent 70%),
+        radial-gradient(40rem 18rem at 0% 100%, var(--petroleo-50), transparent 70%);
+}
+
+/* O limite de largura fica nos filhos: no próprio .container ele centralizaria o bloco */
+.topo-pagina__conteudo {
+    display: grid;
+    gap: var(--espaco-3);
+    justify-items: start;
+}
+
+.topo-pagina__conteudo>* {
+    max-width: 48rem;
+}
+
+/* ---------- 2. Início ---------- */
+
+/* Hero */
+.hero {
+    overflow: hidden;
+    padding-block: var(--espaco-7);
+    background:
+        radial-gradient(40rem 30rem at 92% 8%, var(--laranja-100), transparent 65%),
+        radial-gradient(36rem 26rem at 0% 100%, var(--petroleo-100), transparent 60%);
+}
+
+.hero__grade {
+    display: grid;
+    gap: var(--espaco-7);
+    align-items: center;
+}
+
+.hero__texto {
+    display: grid;
+    gap: var(--espaco-5);
+    justify-items: start;
+}
+
+.hero__destaque {
+    color: var(--cor-acao);
+}
+
+.hero__acoes,
+.quem-acha__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espaco-3);
+}
+
+/* No celular os botões principais ocupam a largura toda */
+@media (max-width: 639px) {
+
+    .hero__acoes,
+    .quem-acha__acoes {
+        width: 100%;
+    }
+
+    .hero__acoes .botao,
+    .quem-acha__acoes .botao {
+        flex: 1 1 100%;
+    }
+}
+
+.hero__garantias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espaco-2) var(--espaco-5);
+    font-weight: 700;
+}
+
+.hero__ilustracao {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    margin-inline: auto;
+}
+
+.hero__ilustracao img {
+    width: 100%;
+    filter: drop-shadow(0 24px 40px rgb(8 58 67 / 0.18));
+}
+
+/* Balões que flutuam sobre a ilustração (decorativos) */
+.hero__balao {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-2);
+    padding: 0.5rem 0.9rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    white-space: nowrap;
+    background-color: var(--cor-superficie);
+    border-radius: var(--raio-total);
+    box-shadow: var(--sombra-2);
+}
+
+.hero__balao--visto {
+    top: 4%;
+    left: 2%;
+}
+
+.hero__balao--combina {
+    right: 2%;
+    bottom: 8%;
+    color: var(--cor-sucesso);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .hero__balao {
+        animation: flutuar 5s ease-in-out infinite;
+    }
+
+    .hero__balao--combina {
+        animation-delay: -2.5s;
+    }
+}
+
+@keyframes flutuar {
+    50% {
+        translate: 0 -8px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero {
+        padding-block: var(--espaco-8);
+    }
+
+    .hero__grade {
+        grid-template-columns: 1.1fr 1fr;
+    }
+
+    .hero__balao--visto {
+        left: -6%;
+    }
+
+    .hero__balao--combina {
+        right: -4%;
+    }
+}
+
+/* Como funciona: passos ligados por uma linha tracejada.
+   O número vem de um contador do CSS (a <ol> já indica a ordem). */
+.passos {
+    display: grid;
+    gap: var(--espaco-6);
+    counter-reset: passo;
+}
+
+.passo {
+    position: relative;
+    padding-left: 4.25rem;
+    counter-increment: passo;
+}
+
+.passo::before {
+    content: counter(passo);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    background-color: var(--cor-acao);
+    border-radius: 50%;
+    box-shadow: 0 0 0 6px var(--laranja-100);
+}
+
+.passo:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 3.75rem;
+    bottom: calc(-1 * var(--espaco-6) + 0.75rem);
+    left: 1.5rem;
+    border-left: 2px dashed var(--laranja-300);
+}
+
+.passo h3 {
+    margin-bottom: var(--espaco-2);
+}
+
+.passo p {
+    color: var(--cor-texto-suave);
+}
+
+@media (min-width: 1024px) {
+    .passos {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--espaco-5);
+    }
+
+    .passo {
+        padding: 4.75rem 0 0;
+    }
+
+    .passo:not(:last-child)::after {
+        top: 1.5rem;
+        bottom: auto;
+        left: 4.25rem;
+        right: calc(-1 * var(--espaco-5) + 0.75rem);
+        border-left: 0;
+        border-top: 2px dashed var(--laranja-300);
+    }
+}
+
+/* Impacto em números */
+.numeros {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--espaco-4);
+}
+
+/* O número vem antes no visual, mas o rótulo (dt) vem antes no HTML.
+   flex-end alinha todos os números no topo, mesmo com rótulos de 2 linhas. */
+.numero {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: var(--espaco-2);
+    padding: var(--espaco-5) var(--espaco-4);
+    text-align: center;
+    background-color: rgb(255 255 255 / 0.07);
+    border: 1px solid rgb(255 255 255 / 0.16);
+    border-radius: var(--raio-g);
+}
+
+.numero dd {
+    font-size: clamp(2.25rem, 1.8rem + 2vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.numero dt {
+    font-weight: 700;
+    color: var(--cor-texto-suave);
+}
+
+.nota {
+    margin-top: var(--espaco-5);
+    font-size: var(--texto-p);
+    text-align: center;
+    color: var(--cor-texto-suave);
+}
+
+@media (min-width: 1024px) {
+    .numeros {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Recursos do PetAlerta */
+.recurso {
+    display: grid;
+    gap: var(--espaco-3);
+    align-content: start;
+}
+
+.recurso p {
+    color: var(--cor-texto-suave);
+}
+
+/* Quem acha também salva */
+.quem-acha {
+    background:
+        radial-gradient(40rem 24rem at 100% 0%, var(--laranja-100), transparent 65%),
+        var(--cor-acao-suave);
+}
+
+.quem-acha__grade {
+    display: grid;
+    gap: var(--espaco-7);
+}
+
+.quem-acha__texto {
+    display: grid;
+    gap: var(--espaco-5);
+    justify-items: start;
+}
+
+.quem-acha__impactos {
+    display: grid;
+    gap: var(--espaco-3);
+    width: 100%;
+}
+
+.impacto {
+    padding: var(--espaco-4) var(--espaco-5);
+}
+
+.quem-acha__lado {
+    display: grid;
+    gap: var(--espaco-5);
+    align-content: start;
+}
+
+.depoimento {
+    position: relative;
+    display: grid;
+    gap: var(--espaco-4);
+    overflow: hidden;
+    color: #FFFFFF;
+    background-color: var(--cor-marca);
+    border-color: var(--cor-marca);
+}
+
+.depoimento::after {
+    content: "“";
+    position: absolute;
+    top: -1.25rem;
+    right: 1.25rem;
+    font-size: 9rem;
+    font-weight: 800;
+    line-height: 1;
+    color: rgb(255 255 255 / 0.1);
+}
+
+.depoimento blockquote {
+    font-size: var(--texto-g);
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.depoimento figcaption {
+    color: var(--petroleo-100);
+}
+
+.depoimento figcaption strong {
+    color: #FFFFFF;
+}
+
+.depoimento small {
+    display: block;
+    margin-top: var(--espaco-1);
+    font-size: 0.85rem;
+}
+
+.selo-vizinho {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espaco-2);
+    justify-self: start;
+    padding: 0.3rem 0.9rem 0.3rem 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--cor-acao-forte);
+    background-color: var(--laranja-100);
+    border-radius: var(--raio-total);
+}
+
+.selo-vizinho img {
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0.3rem;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+}
+
+.quem-acha__passos h3 {
+    margin-bottom: var(--espaco-4);
+}
+
+@media (min-width: 1024px) {
+    .quem-acha__grade {
+        grid-template-columns: 1.15fr 1fr;
+        align-items: start;
+    }
+}
+
+/* Procurados agora (prévia do mural) */
+.procurados__topo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--espaco-4);
+    margin-bottom: var(--espaco-6);
+}
+
+.procurados__topo .cabecalho-secao {
+    margin-bottom: 0;
+}
+
+/* ---------- 3. Mural ---------- */
+.filtros {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--espaco-4);
+    margin-bottom: var(--espaco-4);
+}
+
+.filtros__busca {
+    grid-column: 1 / -1;
+}
+
+/* Campo de busca com lupa */
+.campo__entrada[type="search"] {
+    padding-left: 2.75rem;
+    background: var(--cor-superficie) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2352606D' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='m15.5 15.5 5 5'/%3E%3C/svg%3E") left 0.9rem center / 1.15rem no-repeat;
+}
+
+@media (min-width: 1024px) {
+    .filtros {
+        grid-template-columns: minmax(0, 1.8fr) repeat(4, minmax(0, 1fr));
+        align-items: end;
+    }
+
+    .filtros__busca {
+        grid-column: auto;
+    }
+}
+
+.resultados {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espaco-3);
+    margin-bottom: var(--espaco-4);
+}
+
+.resultados__contador {
+    font-weight: 700;
+}
+
+.titulo-lista {
+    margin-bottom: var(--espaco-5);
+    font-size: 1.6rem;
+}
+
+.vazio {
+    display: grid;
+    gap: var(--espaco-3);
+    justify-items: center;
+    padding: var(--espaco-7) var(--espaco-5);
+    text-align: center;
+    background-color: var(--cor-superficie);
+    border: 2px dashed var(--cor-borda);
+    border-radius: var(--raio-g);
+}
+
+/* ---------- 4. Anunciar ---------- */
+.anunciar {
+    display: grid;
+    gap: var(--espaco-6);
+    align-items: start;
+}
+
+.anunciar__lado {
+    display: grid;
+    gap: var(--espaco-4);
+}
+
+.anunciar__lado h2 {
+    margin-bottom: var(--espaco-3);
+    font-size: var(--titulo-3);
+}
+
+.anunciar__lado p {
+    color: var(--cor-texto-suave);
+}
+
+@media (min-width: 1024px) {
+    .anunciar {
+        grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+    }
+
+    .anunciar__lado {
+        position: sticky;
+        top: calc(var(--altura-cabecalho) + var(--espaco-5));
+    }
+}
+
+/* Recado para quem achou um animal */
+.agradecimento {
+    padding: var(--espaco-4) var(--espaco-5);
+    background-color: var(--cor-acao-suave);
+    border: 2px solid var(--laranja-300);
+    border-radius: var(--raio-g);
+}
+
+.agradecimento h3 {
+    color: var(--cor-acao-forte);
+}
+
+.resultado {
+    display: grid;
+    gap: var(--espaco-5);
+    margin-top: var(--espaco-7);
+}
+
+.resultado__topo {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-4);
+}
+
+/* ---------- 5. Sobre ---------- */
+.abas__painel {
+    display: grid;
+    gap: var(--espaco-4);
+}
+
+.abas__painel>p,
+.abas__painel li {
+    max-width: 70ch;
+}
+
+.abas__cabecalho {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-4);
+}
+
+.ods {
+    display: grid;
+    gap: var(--espaco-4);
+    margin-top: var(--espaco-2);
+}
+
+.ods__numero {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--ods-cor);
+    background-color: var(--ods-fundo);
+    border-radius: var(--raio);
+}
+
+.ods__item--3 {
+    --ods-cor: #2F6B22;
+    --ods-fundo: #E3F2DD;
+}
+
+.ods__item--11 {
+    --ods-cor: #9A5300;
+    --ods-fundo: #FFEBD1;
+}
+
+@media (min-width: 768px) {
+    .ods {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ---------- 6. Integrantes ---------- */
+.integrante {
+    display: grid;
+    gap: var(--espaco-2);
+    justify-items: center;
+    padding-inline: var(--espaco-4);
+    text-align: center;
+}
+
+.integrante__foto {
+    width: 112px;
+    height: 112px;
+    margin-bottom: var(--espaco-2);
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--cor-superficie), 0 0 0 7px var(--petroleo-300);
+}
+
+.integrante h2 {
+    font-size: var(--titulo-3);
+}
+
+.integrante__dados {
+    font-size: var(--texto-p);
+    color: var(--cor-texto-suave);
+}
+
+.integrante__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--espaco-2);
+    margin-top: var(--espaco-2);
+}
+
+.integrante__links .botao {
+    padding-inline: 0.8rem;
+}
+
+/* ---------- 7. Contato ---------- */
+.contato {
+    display: grid;
+    gap: var(--espaco-6);
+    align-items: start;
+}
+
+.canais {
+    display: grid;
+    gap: var(--espaco-3);
+}
+
+.canal {
+    padding: var(--espaco-5);
+}
+
+.canal--alerta {
+    background-color: var(--cor-acao-suave);
+    border-color: var(--laranja-300);
+}
+
+@media (min-width: 1024px) {
+    .contato {
+        grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
+    }
+}

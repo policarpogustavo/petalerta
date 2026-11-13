@@ -1,0 +1,695 @@
+/* ==========================================================
+    PetAlerta — mapa.css (só no Mural)
+    1. Mapa + painel   2. Moldura e desenho   3. Área e trajeto
+    4. Pinos e marcadores   5. Controles   6. Legenda   7. Painel
+   ========================================================== */
+
+/* ---------- 1. Mapa e painel lado a lado ---------- */
+.busca {
+    display: grid;
+    gap: var(--espaco-5);
+    margin-bottom: var(--espaco-7);
+}
+
+@media (min-width: 1024px) {
+    .busca {
+        grid-template-columns: minmax(0, 1.55fr) minmax(320px, 1fr);
+        align-items: start;
+    }
+
+    .mapa {
+        position: sticky;
+        top: calc(var(--altura-cabecalho) + var(--espaco-4));
+    }
+}
+
+/* ---------- 2. Moldura e desenho ---------- */
+.mapa {
+    /* Cores do desenho do mapa */
+    --mapa-terra: #FBF6EE;
+    --mapa-quadra: #F0E7D8;
+    --mapa-parque: #D5EBCB;
+    --mapa-parque-borda: #BCDDAF;
+    --mapa-agua: #AFDAE8;
+    --mapa-via: #FFFFFF;
+    --mapa-via-borda: #E5D8C4;
+    --mapa-rotulo: #806D57;
+
+    display: grid;
+    gap: var(--espaco-3);
+}
+
+.mapa__moldura {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background-color: var(--mapa-terra);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-g);
+    box-shadow: var(--sombra-2);
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+@media (min-width: 640px) {
+    .mapa__moldura {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+.mapa__desenho,
+.mapa__marcadores {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* A camada de marcadores deixa o clique passar; só os pinos recebem clique */
+.mapa__marcadores {
+    pointer-events: none;
+}
+
+.mapa__marcadores>* {
+    position: absolute;
+}
+
+.mapa__marcadores>.fora-da-vista {
+    visibility: hidden;
+}
+
+.mapa__terra {
+    fill: var(--mapa-terra);
+}
+
+.mapa__quadra {
+    fill: var(--mapa-quadra);
+}
+
+.mapa__parque {
+    fill: var(--mapa-parque);
+    stroke: var(--mapa-parque-borda);
+    stroke-width: 1.5;
+}
+
+/* Rios com as marginais dos dois lados, e avenidas com borda */
+.mapa__rio-borda,
+.mapa__rio-margem,
+.mapa__rio,
+.mapa__avenida-borda,
+.mapa__avenida {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.mapa__rio-borda {
+    stroke: var(--mapa-via-borda);
+    stroke-width: 22;
+}
+
+.mapa__rio-margem {
+    stroke: var(--mapa-via);
+    stroke-width: 19;
+}
+
+.mapa__rio {
+    stroke: var(--mapa-agua);
+    stroke-width: 10;
+}
+
+.mapa__avenida-borda {
+    stroke: var(--mapa-via-borda);
+    stroke-width: 7.5;
+}
+
+.mapa__avenida {
+    stroke: var(--mapa-via);
+    stroke-width: 5;
+}
+
+/* ---------- 3. Área provável, trajeto e ligações ----------
+   non-scaling-stroke: a linha fica com a mesma espessura em qualquer zoom */
+.mapa__area {
+    color: var(--tom);
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.mapa__area-externa {
+    fill: currentColor;
+    fill-opacity: 0.09;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-dasharray: 8 7;
+    vector-effect: non-scaling-stroke;
+}
+
+.mapa__area-interna {
+    fill: currentColor;
+    fill-opacity: 0.14;
+}
+
+.mapa__trajeto {
+    fill: none;
+    stroke: var(--cor-texto);
+    stroke-width: 3.5;
+    stroke-dasharray: 0.5 9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+}
+
+.mapa__ligacao {
+    stroke: var(--cor-marca);
+    stroke-width: 2.5;
+    stroke-dasharray: 7.5 7.5;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .mapa__area {
+        animation: mapa-surgir 700ms ease-out;
+    }
+
+    .mapa__area-externa,
+    .mapa__ligacao {
+        animation: mapa-tracejado 1.4s linear infinite;
+    }
+}
+
+@keyframes mapa-surgir {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+}
+
+@keyframes mapa-tracejado {
+    to {
+        stroke-dashoffset: -15;
+    }
+}
+
+/* ---------- 4. Pinos e marcadores ---------- */
+
+/* Pino em forma de gota: um quadrado com 3 cantos redondos, girado 45°.
+   O translate coloca a ponta da gota exatamente sobre o local. */
+.pino {
+    --tamanho: 30px;
+    width: var(--tamanho);
+    height: var(--tamanho);
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: auto;
+    translate: -50% calc(-50% - var(--tamanho) * 0.71);
+    transform-origin: 50% calc(50% + var(--tamanho) * 0.71);
+    transition: scale var(--transicao);
+}
+
+.pino::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--tom);
+    border: 3px solid #FFFFFF;
+    border-radius: 50% 50% 50% 0;
+    box-shadow: 0 3px 8px rgb(31 41 51 / 0.3);
+    rotate: -45deg;
+}
+
+/* Símbolo de cada situação, para não depender só da cor */
+.pino::after {
+    content: "?";
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: calc(var(--tamanho) * 0.46);
+    font-weight: 800;
+    line-height: 1;
+    color: #FFFFFF;
+}
+
+.pino[data-situacao="achado"]::after {
+    content: "\2665\FE0E";
+}
+
+.pino[data-situacao="risco"]::after {
+    content: "!";
+}
+
+.pino[data-situacao="reencontrado"]::after {
+    content: "\2713";
+}
+
+.pino:hover,
+.pino:focus-visible {
+    z-index: 3;
+    scale: 1.15;
+}
+
+.pino[aria-pressed="true"] {
+    z-index: 4;
+    scale: 1.35;
+}
+
+/* Caso que combina com o animal escolhido */
+.pino--ligado::before {
+    box-shadow: 0 0 0 4px rgb(255 255 255 / 0.9), 0 0 0 7px var(--tom);
+}
+
+/* Etiquetas sobre o mapa: nome do pino e "Você viu aqui" */
+.pino__nome,
+.mapa__marca span {
+    position: absolute;
+    left: 50%;
+    padding: 0.1rem 0.55rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+    border-radius: var(--raio-total);
+    translate: -50% 0;
+    pointer-events: none;
+}
+
+.pino__nome {
+    bottom: calc(100% + var(--tamanho) * 0.3);
+    color: var(--cor-texto);
+    background-color: var(--cor-superficie);
+    box-shadow: var(--sombra-2);
+    opacity: 0;
+    transition: opacity var(--transicao);
+}
+
+.pino:hover .pino__nome,
+.pino:focus-visible .pino__nome,
+.pino[aria-pressed="true"] .pino__nome {
+    opacity: 1;
+}
+
+/* Bolinha numerada dos avistamentos: no mapa e na linha do tempo do painel */
+.mapa__avistamento,
+.trajeto__marca {
+    display: grid;
+    place-items: center;
+    width: var(--bolinha, 1.5rem);
+    height: var(--bolinha, 1.5rem);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--cor-texto);
+    background-color: var(--cor-superficie);
+    border: 2.5px solid var(--cor-texto);
+    border-radius: 50%;
+}
+
+.mapa__avistamento {
+    box-shadow: var(--sombra-1);
+    translate: -50% -50%;
+}
+
+/* Ponto que a pessoa marcou ao enviar uma pista */
+.mapa__marca {
+    width: 1.25rem;
+    height: 1.25rem;
+    background-color: var(--cor-acao);
+    border: 3px solid #FFFFFF;
+    border-radius: 50%;
+    translate: -50% -50%;
+}
+
+.mapa__marca span {
+    bottom: calc(100% + 6px);
+    color: #FFFFFF;
+    background-color: var(--cor-acao);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .mapa__marca {
+        animation: mapa-pulso 1.4s ease-out infinite;
+    }
+}
+
+@keyframes mapa-pulso {
+    from {
+        box-shadow: 0 0 0 0 rgb(194 65 12 / 0.5);
+    }
+
+    to {
+        box-shadow: 0 0 0 16px rgb(194 65 12 / 0);
+    }
+}
+
+/* Nomes de bairros, lugares, parques e rios */
+.mapa__rotulo {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--mapa-rotulo);
+    text-shadow: 0 0 2px var(--mapa-terra), 0 0 4px var(--mapa-terra), 0 0 8px var(--mapa-terra);
+    translate: -50% -50%;
+}
+
+.mapa__rotulo--bairro {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #5A4632;
+}
+
+.mapa__rotulo--parque,
+.mapa__rotulo--rio {
+    font-style: italic;
+    letter-spacing: 0.01em;
+    text-transform: none;
+}
+
+.mapa__rotulo--parque {
+    display: none;
+    color: #3F6E35;
+}
+
+.mapa__rotulo--rio {
+    color: #3E7F96;
+}
+
+/* Detalhes que só aparecem com o mapa aproximado */
+.mapa--perto .mapa__rotulo--parque {
+    display: block;
+}
+
+/* ---------- 5. Controles, dica e escala ---------- */
+.mapa__controles {
+    position: absolute;
+    right: var(--espaco-3);
+    bottom: var(--espaco-3);
+    display: grid;
+    gap: var(--espaco-2);
+}
+
+.mapa__controles .botao {
+    border-radius: var(--raio);
+    box-shadow: var(--sombra-2);
+}
+
+.mapa__dica {
+    position: absolute;
+    top: var(--espaco-3);
+    left: var(--espaco-3);
+    right: var(--espaco-3);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espaco-2);
+    padding: var(--espaco-2) var(--espaco-2) var(--espaco-2) var(--espaco-4);
+    font-size: var(--texto-p);
+    font-weight: 700;
+    color: #FFFFFF;
+    background-color: var(--cor-marca-forte);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra-3);
+}
+
+.mapa--marcando .mapa__moldura {
+    cursor: crosshair;
+    outline: 3px solid var(--cor-acao);
+    outline-offset: -3px;
+}
+
+.mapa--marcando .pino {
+    pointer-events: none;
+}
+
+.mapa--arrastando .mapa__moldura {
+    cursor: grabbing;
+}
+
+.mapa__escala {
+    position: absolute;
+    left: var(--espaco-3);
+    bottom: var(--espaco-3);
+    display: flex;
+    align-items: flex-end;
+    gap: var(--espaco-2);
+    padding: 0.15rem 0.6rem 0.3rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--cor-texto);
+    background-color: rgb(255 255 255 / 0.85);
+    border-radius: var(--raio-p);
+    pointer-events: none;
+}
+
+.mapa__escala-barra {
+    height: 7px;
+    border: 2px solid currentColor;
+    border-top: 0;
+}
+
+/* ---------- 6. Legenda ---------- */
+.mapa__legenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espaco-2) var(--espaco-4);
+    font-size: var(--texto-p);
+    color: var(--cor-texto-suave);
+}
+
+.mapa__legenda li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espaco-2);
+}
+
+.legenda-pino {
+    width: 0.85rem;
+    height: 0.85rem;
+    background-color: var(--tom);
+    border-radius: 50% 50% 50% 0;
+    rotate: -45deg;
+}
+
+.legenda-area {
+    width: 1.1rem;
+    height: 1.1rem;
+    background-color: rgb(180 35 24 / 0.1);
+    border: 2px dashed var(--cor-perdido);
+    border-radius: 50%;
+}
+
+.legenda-trajeto {
+    width: 1.5rem;
+    border-top: 3px dotted var(--cor-texto);
+}
+
+.mapa__nota {
+    font-size: 0.875rem;
+    color: var(--cor-texto-suave);
+}
+
+/* ---------- 7. Painel "Por onde procurar" ---------- */
+.painel {
+    display: grid;
+    gap: var(--espaco-5);
+    align-content: start;
+    padding: var(--espaco-5);
+}
+
+.painel__inicio {
+    display: grid;
+    gap: var(--espaco-4);
+    justify-items: start;
+}
+
+.painel__inicio .lista-check {
+    font-size: var(--texto-p);
+}
+
+.painel__inicio h2,
+.painel__titulo {
+    font-size: 1.5rem;
+}
+
+.painel__caso {
+    display: grid;
+    gap: var(--espaco-5);
+}
+
+.painel__topo {
+    display: grid;
+    grid-template-columns: 5rem minmax(0, 1fr) auto;
+    gap: var(--espaco-4);
+    align-items: start;
+}
+
+.painel__foto,
+.combinacao__foto {
+    overflow: hidden;
+    aspect-ratio: 1;
+    border-radius: var(--raio);
+}
+
+.painel__foto svg,
+.combinacao__foto svg {
+    width: 100%;
+    height: 100%;
+}
+
+.painel__identificacao {
+    display: grid;
+    gap: var(--espaco-1);
+    justify-items: start;
+}
+
+.painel__titulo:focus {
+    outline: none;
+}
+
+.painel__subtitulo {
+    font-size: var(--texto-p);
+    color: var(--cor-texto-suave);
+}
+
+.painel__fechar {
+    margin: -0.4rem -0.4rem 0 0;
+}
+
+.painel__resumo {
+    display: grid;
+    gap: var(--espaco-3);
+    padding: var(--espaco-4);
+    background-color: var(--tom-fundo);
+    border-radius: var(--raio);
+}
+
+.painel__resumo dt {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--tom);
+}
+
+.painel__resumo dd {
+    font-weight: 700;
+}
+
+.painel__secao {
+    display: grid;
+    gap: var(--espaco-3);
+}
+
+.painel__secao h3 {
+    font-size: var(--texto-m);
+}
+
+.painel__secao .lista-check,
+.painel__nota {
+    font-size: var(--texto-p);
+}
+
+.painel__nota {
+    color: var(--cor-texto-suave);
+}
+
+.painel__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espaco-2);
+}
+
+.painel__acoes .botao {
+    flex: 1 1 11rem;
+}
+
+/* Trajeto: linha do tempo com o início e os avistamentos */
+.trajeto__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.75rem minmax(0, 1fr);
+    gap: var(--espaco-3);
+    padding-bottom: var(--espaco-4);
+    font-size: var(--texto-p);
+    line-height: 1.4;
+}
+
+.trajeto__item:last-child {
+    padding-bottom: 0;
+}
+
+.trajeto__item:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 1.9rem;
+    bottom: 0.15rem;
+    left: calc(0.875rem - 1px);
+    border-left: 2px dotted var(--cor-texto-suave);
+}
+
+.trajeto__marca {
+    --bolinha: 1.75rem;
+}
+
+.trajeto__item:first-child .trajeto__marca {
+    background-color: var(--tom);
+    border-color: var(--tom);
+}
+
+.trajeto__item time {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--cor-texto-suave);
+}
+
+/* Possíveis combinações */
+.combinacoes {
+    display: grid;
+    gap: var(--espaco-2);
+}
+
+.combinacao {
+    display: grid;
+    grid-template-columns: 3.25rem minmax(0, 1fr) auto;
+    gap: var(--espaco-3);
+    align-items: center;
+    width: 100%;
+    padding: var(--espaco-2);
+    text-align: left;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    cursor: pointer;
+    transition: border-color var(--transicao), background-color var(--transicao);
+}
+
+.combinacao:hover {
+    background-color: var(--cor-marca-suave);
+    border-color: var(--cor-marca);
+}
+
+.combinacao__texto {
+    display: grid;
+    font-size: var(--texto-p);
+    line-height: 1.35;
+}
+
+.combinacao__texto small {
+    font-size: 0.875rem;
+    color: var(--cor-texto-suave);
+}
+
+.combinacao__pontos {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: var(--cor-sucesso);
+    background-color: var(--cor-reencontrado-fundo);
+    border-radius: var(--raio-total);
+}

@@ -1,0 +1,347 @@
+/* ==========================================================
+    PetAlerta — base.css
+    Fundamentos usados em todas as páginas.
+    1. Variáveis   2. Reset   3. Elementos   4. Layout   5. Utilitários
+   ========================================================== */
+
+/* ---------- 1. Variáveis ---------- */
+:root {
+    /* Paleta da marca (cores "cruas").
+     Os componentes não usam estas: usam os papéis logo abaixo. */
+    --petroleo-50: #EEF6F6;
+    --petroleo-100: #D3E9EA;
+    --petroleo-300: #86C2C5;
+    --petroleo-700: #0B5563;
+    --petroleo-900: #083A43;
+
+    --laranja-50: #FFF4EB;
+    --laranja-100: #FFE4CF;
+    --laranja-300: #FDBA8C;
+    --laranja-600: #C2410C;
+    --laranja-700: #9A3412;
+
+    --areia-50: #FFFBF5;
+    --areia-100: #FBF3E8;
+    --areia-300: #E6D8C5;
+
+    --grafite-900: #1F2933;
+    --grafite-600: #52606D;
+    --grafite-400: #7B8794;
+
+    /* Papéis das cores: o que cada cor significa no site */
+    --cor-fundo: var(--areia-50);
+    --cor-superficie: #FFFFFF;
+    --cor-superficie-suave: var(--areia-100);
+    --cor-borda: var(--areia-300);
+    --cor-borda-campo: var(--grafite-400);
+    --cor-texto: var(--grafite-900);
+    --cor-texto-suave: var(--grafite-600);
+    --cor-titulo: var(--petroleo-900);
+    --cor-marca: var(--petroleo-700);
+    --cor-marca-forte: var(--petroleo-900);
+    --cor-marca-suave: var(--petroleo-50);
+    --cor-acao: var(--laranja-600);
+    --cor-acao-forte: var(--laranja-700);
+    --cor-acao-suave: var(--laranja-50);
+
+    /* Situação de cada caso. A cor sempre vem junto de um texto. */
+    --cor-perdido: #B42318;
+    --cor-perdido-fundo: #FEE4E2;
+    --cor-achado: #175CD3;
+    --cor-achado-fundo: #D1E9FF;
+    --cor-risco: #93370D;
+    --cor-risco-fundo: #FEF0C7;
+    --cor-reencontrado: #067647;
+    --cor-reencontrado-fundo: #DCFAE6;
+    --cor-erro: var(--cor-perdido);
+    --cor-sucesso: var(--cor-reencontrado);
+
+    /* Tipografia: Atkinson Hyperlegible foi criada para leitores com baixa visão */
+    --fonte: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
+    --texto-p: 1rem;
+    --texto-m: 1.125rem;
+    --texto-g: 1.25rem;
+    --titulo-3: 1.3rem;
+    --titulo-2: clamp(1.75rem, 1.35rem + 1.5vw, 2.5rem);
+    --titulo-1: clamp(2.125rem, 1.5rem + 2.8vw, 3.5rem);
+
+    /* Espaçamentos */
+    --espaco-1: 0.25rem;
+    --espaco-2: 0.5rem;
+    --espaco-3: 0.75rem;
+    --espaco-4: 1rem;
+    --espaco-5: 1.5rem;
+    --espaco-6: 2rem;
+    --espaco-7: 3rem;
+    --espaco-8: 4.5rem;
+
+    /* Formas e movimento */
+    --raio-p: 8px;
+    --raio: 14px;
+    --raio-g: 22px;
+    --raio-total: 999px;
+    --sombra-1: 0 1px 2px rgb(31 41 51 / 0.06), 0 2px 6px rgb(31 41 51 / 0.06);
+    --sombra-2: 0 6px 16px rgb(31 41 51 / 0.1), 0 2px 4px rgb(31 41 51 / 0.05);
+    --sombra-3: 0 20px 48px rgb(8 58 67 / 0.2);
+    --transicao: 180ms ease;
+
+    --largura-maxima: 1200px;
+    --altura-cabecalho: 72px;
+}
+
+/* ---------- 2. Reset ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    /* Âncoras não ficam escondidas atrás do cabeçalho fixo */
+    scroll-padding-top: calc(var(--altura-cabecalho) + var(--espaco-4));
+}
+
+/* Listas com classe são componentes: tiram os marcadores padrão */
+ul[class],
+ol[class] {
+    padding: 0;
+    list-style: none;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+img {
+    height: auto;
+}
+
+/* Campos e botões usam a mesma fonte do resto do site */
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+/* ---------- 3. Elementos ---------- */
+body {
+    min-height: 100vh;
+    font-family: var(--fonte);
+    font-size: var(--texto-m);
+    line-height: 1.6;
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo);
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--cor-titulo);
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: var(--titulo-1);
+    letter-spacing: -0.025em;
+}
+
+h2 {
+    font-size: var(--titulo-2);
+    letter-spacing: -0.02em;
+}
+
+h3 {
+    font-size: var(--titulo-3);
+    font-weight: 700;
+}
+
+h4 {
+    font-size: var(--texto-m);
+    font-weight: 700;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+a {
+    color: var(--cor-marca);
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+}
+
+a:hover {
+    color: var(--cor-acao-forte);
+}
+
+strong,
+b {
+    font-weight: 700;
+}
+
+:focus-visible {
+    outline: 3px solid var(--cor-acao);
+    outline-offset: 3px;
+}
+
+::selection {
+    background-color: var(--laranja-100);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* ---------- 4. Layout ---------- */
+.container {
+    width: min(100% - 2 * var(--espaco-4), var(--largura-maxima));
+    margin-inline: auto;
+}
+
+.secao {
+    padding-block: var(--espaco-7);
+}
+
+.secao--sem-topo {
+    padding-top: 0;
+}
+
+.secao--clara {
+    background-color: var(--cor-superficie);
+}
+
+/* Seção escura: troca os papéis das cores e todo o conteúdo se adapta */
+.secao--marca {
+    --cor-titulo: #FFFFFF;
+    --cor-texto: #FFFFFF;
+    --cor-texto-suave: var(--petroleo-100);
+    color: var(--cor-texto);
+    background-color: var(--cor-marca);
+}
+
+/* Título de seção: sobretítulo + h2 + texto de apoio */
+.cabecalho-secao {
+    display: grid;
+    gap: var(--espaco-3);
+    justify-items: start;
+    max-width: 46rem;
+    margin-bottom: var(--espaco-6);
+}
+
+.cabecalho-secao--centro {
+    justify-items: center;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.sobretitulo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espaco-2);
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cor-acao);
+}
+
+.sobretitulo::before {
+    content: "";
+    width: 1.5rem;
+    height: 3px;
+    background-color: currentColor;
+    border-radius: 2px;
+}
+
+.secao--marca .sobretitulo {
+    color: var(--laranja-300);
+}
+
+.texto-apoio {
+    max-width: 62ch;
+    font-size: var(--texto-g);
+    color: var(--cor-texto-suave);
+}
+
+/* Grade que se ajusta sozinha: cada item tem pelo menos --grade-min de largura */
+.grade {
+    display: grid;
+    gap: var(--espaco-5);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--grade-min, 16rem)), 1fr));
+}
+
+.grade--cards {
+    --grade-min: 16.5rem;
+}
+
+.grade--equipe {
+    --grade-min: 12.5rem;
+}
+
+/* Grade fixa de 3 colunas (2 no tablet), para conjuntos com número certo de itens */
+@media (min-width: 640px) {
+    .grade--3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: min(100% - 2 * var(--espaco-6), var(--largura-maxima));
+    }
+}
+
+@media (min-width: 1024px) {
+    .secao {
+        padding-block: var(--espaco-8);
+    }
+
+    .secao--sem-topo {
+        padding-top: 0;
+    }
+
+    .grade--3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ---------- 5. Utilitários ---------- */
+
+/* Esconde da tela, mas mantém para leitores de tela */
+.visualmente-oculto {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Espaço entre parágrafos de um texto corrido */
+.fluxo>*+* {
+    margin-top: var(--fluxo-espaco, 1em);
+}
