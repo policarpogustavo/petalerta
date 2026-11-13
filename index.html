@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
-        content="PetAlerta reúne animais perdidos, achados e em risco por bairro, sugere combinações, mostra no mapa por onde o animal pode ter andado e avisa a vizinhança. Gratuito para o tutor.">
+        content="PetAlerta reúne animais perdidos, achados e em risco por bairro, sugere combinações, mostra no mapa por onde o animal pode ter andado e avisa a vizinhança. Também atende por um assistente no Telegram. Gratuito para o tutor.">
     <meta name="theme-color" content="#0B5563">
     <title>PetAlerta — Perdeu ou achou um animal? Avise seu bairro</title>
     <link rel="icon" href="assets/icons/PetAlerta.svg" type="image/svg+xml">
@@ -42,7 +42,7 @@
             <nav class="menu" id="menu-principal" aria-label="Menu principal">
                 <ul class="menu__lista">
                     <li><a class="menu__link" href="index.html" aria-current="page">Início</a></li>
-                    <li><a class="menu__link" href="pets.html">Pets Perdidos</a></li>
+                    <li><a class="menu__link" href="pets.html">Pets perdidos</a></li>
                     <li><a class="menu__link" href="sobre.html">Sobre</a></li>
                     <li><a class="menu__link" href="faq.html">FAQ</a></li>
                     <li><a class="menu__link" href="integrantes.html">Integrantes</a></li>
@@ -68,6 +68,16 @@
                         <a class="botao" href="anunciar.html?tipo=perdido">Perdi um animal</a>
                         <a class="botao botao--secundario" href="anunciar.html?tipo=achado">Achei um animal</a>
                     </div>
+                    <a class="atalho-telegram" href="#telegram">
+                        <span class="atalho-telegram__icone">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M43 5 29.5 43l-7.5-17L5 18.5z" />
+                                <path d="M43 5 22 26" />
+                            </svg>
+                        </span>
+                        <span>Prefere conversar? <strong>Fale com nosso assistente no Telegram</strong></span>
+                    </a>
                     <ul class="lista-check hero__garantias">
                         <li>Grátis do aviso ao reencontro</li>
                         <li>Seu telefone não aparece</li>
@@ -79,9 +89,9 @@
                     <img src="assets/images/hero.svg"
                         alt="Mapa de um bairro: um animal perdido e um animal achado ligados por um caminho tracejado"
                         width="520" height="440">
-                    <p class="hero__balao hero__balao--visto" aria-hidden="true"><span class="selo"
+                    <p class="balao hero__balao--visto" aria-hidden="true"><span class="selo"
                             data-situacao="perdido">Perdido</span> Visto há 2 horas</p>
-                    <p class="hero__balao hero__balao--combina" aria-hidden="true">✓ 92% compatível</p>
+                    <p class="balao hero__balao--combina" aria-hidden="true">✓ 80% compatível</p>
                 </div>
             </div>
         </section>
@@ -92,14 +102,15 @@
                 <header class="cabecalho-secao">
                     <p class="sobretitulo">Como funciona</p>
                     <h2 id="titulo-como-funciona">Do aviso ao reencontro em quatro passos</h2>
-                    <p class="texto-apoio">Publique seu aviso de graça pelo site ou pelo assistente virtual do
-                        PetAlerta.</p>
+                    <p class="texto-apoio">Publique seu aviso de graça pelo site ou converse com o <a
+                            href="#telegram">assistente virtual do PetAlerta no Telegram</a>.</p>
                 </header>
 
                 <ol class="passos">
                     <li class="passo">
                         <h3>Registre o caso</h3>
-                        <p>Informe espécie, porte, cor, bairro e data. Leva menos de dois minutos.</p>
+                        <p>Pelo site ou pelo Telegram, informe espécie, porte, cor, bairro e data. Leva menos de dois
+                            minutos.</p>
                     </li>
                     <li class="passo">
                         <h3>O sistema cruza</h3>
@@ -116,6 +127,192 @@
                         </p>
                     </li>
                 </ol>
+            </div>
+        </section>
+
+        <!-- Assistente no Telegram -->
+        <section class="secao telegram" id="telegram" aria-labelledby="titulo-telegram">
+            <div class="container">
+                <div class="telegram__grade">
+                    <header class="cabecalho-secao">
+                        <p class="sobretitulo">Assistente virtual no Telegram</p>
+                        <h2 id="titulo-telegram">Prefere conversar? O PetAlerta também atende no Telegram</h2>
+                        <p class="texto-apoio">Na hora do susto, ninguém quer preencher formulário. Por isso o PetAlerta
+                            tem um chatbot no Telegram que atende 24 horas por dia: você conta o que aconteceu do seu
+                            jeito, por mensagem ou por áudio, e o assistente cuida do resto. Ele monta o aviso, publica
+                            no mural, compara com os animais achados na região e avisa você assim que surgir uma pista.
+                        </p>
+                    </header>
+
+                    <figure class="telegram__demo">
+                        <div class="celular">
+                            <p class="balao telegram__balao telegram__balao--pista" aria-hidden="true"><img
+                                    src="assets/icons/sino.svg" alt="" width="20" height="20">Nova pista da Pipoca</p>
+                            <p class="balao telegram__balao telegram__balao--audio" aria-hidden="true"><img
+                                    src="assets/icons/microfone.svg" alt="" width="20" height="20">Áudio entendido ✓</p>
+
+                            <div class="chat">
+                                <div class="chat__topo">
+                                    <p class="chat__status" aria-hidden="true">
+                                        <span>20:16</span>
+                                        <svg viewBox="0 0 52 16" fill="currentColor" focusable="false">
+                                            <rect x="0" y="10" width="3" height="5" rx="1" />
+                                            <rect x="5" y="7" width="3" height="8" rx="1" />
+                                            <rect x="10" y="4" width="3" height="11" rx="1" />
+                                            <rect x="15" y="1" width="3" height="14" rx="1" />
+                                            <rect x="25.5" y="1.5" width="22" height="13" rx="4" fill="none"
+                                                stroke="currentColor" stroke-width="1.6" />
+                                            <rect x="28" y="4" width="15" height="8" rx="2" />
+                                            <rect x="49" y="5.5" width="2.2" height="5" rx="1" />
+                                        </svg>
+                                    </p>
+                                    <div class="chat__contato">
+                                        <img class="chat__avatar" src="assets/icons/PetAlerta.svg" alt="" width="42"
+                                            height="42">
+                                        <p><strong>PetAlerta</strong> <small>assistente virtual · online</small></p>
+                                    </div>
+                                </div>
+
+                                <p class="chat__dia">Hoje</p>
+
+                                <ol class="chat__mensagens" aria-label="Exemplo de conversa">
+                                    <li class="chat__mensagem chat__mensagem--bot">
+                                        <p class="chat__balao"><span class="visualmente-oculto">Assistente: </span>Oi!
+                                            Eu sou o assistente do PetAlerta 🐾 Você perdeu ou encontrou um animal?
+                                            <time class="chat__hora">20:14</time>
+                                        </p>
+                                    </li>
+                                    <li class="chat__mensagem chat__mensagem--voce">
+                                        <div class="chat__balao">
+                                            <p class="visualmente-oculto">Você enviou um áudio:</p>
+                                            <div class="chat__audio" aria-hidden="true">
+                                                <span class="chat__play"></span>
+                                                <svg class="chat__onda" viewBox="0 0 120 28" fill="none"
+                                                    stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
+                                                    focusable="false">
+                                                    <path
+                                                        d="M2 11v6M6.4 8v12M10.8 5v18M15.2 9v10M19.6 3v22M24 7v14M28.4 10v8M32.8 6v16M37.2 2v24M41.6 5v18M46 8v12M50.4 4v20M54.8 10v8M59.2 7v14M63.6 3v22M68 6v16M72.4 9v10M76.8 5v18M81.2 8v12M85.6 11v6M90 7v14M94.4 4v20M98.8 9v10M103.2 6v16M107.6 10v8M112 8v12M116.4 11v6" />
+                                                </svg>
+                                                <span class="chat__duracao">0:12</span>
+                                            </div>
+                                            <p class="chat__transcricao">“Perdi a Pipoca, minha cachorra caramelo. Ela
+                                                fugiu na Rua Domingos de Morais, na Vila Mariana, com coleira
+                                                vermelha.” <time class="chat__hora">20:15</time></p>
+                                        </div>
+                                    </li>
+                                    <li class="chat__mensagem chat__mensagem--bot">
+                                        <p class="chat__balao"><span class="visualmente-oculto">Assistente:
+                                            </span>Sinto muito pela Pipoca, vamos encontrá-la! Qual é o porte dela?
+                                            <time class="chat__hora">20:15</time>
+                                        </p>
+                                        <ul class="chat__respostas" aria-label="Respostas rápidas">
+                                            <li>Pequeno</li>
+                                            <li>Médio</li>
+                                            <li>Grande</li>
+                                        </ul>
+                                    </li>
+                                    <li class="chat__mensagem chat__mensagem--voce">
+                                        <p class="chat__balao"><span class="visualmente-oculto">Você: </span>Médio
+                                            <time class="chat__hora">20:15</time>
+                                        </p>
+                                    </li>
+                                    <li class="chat__mensagem chat__mensagem--bot">
+                                        <p class="chat__balao"><span class="visualmente-oculto">Assistente:
+                                            </span>Pronto! O aviso da Pipoca já está no mural, e os vizinhos da Vila
+                                            Mariana foram avisados 🔔 <time class="chat__hora">20:16</time></p>
+                                    </li>
+                                    <li class="chat__mensagem chat__mensagem--bot">
+                                        <div class="chat__balao chat__balao--combinacao">
+                                            <p class="visualmente-oculto">Assistente:</p>
+                                            <p class="selo" data-situacao="reencontrado">100% compatível</p>
+                                            <p><strong>Boa notícia!</strong> Um cachorro caramelo de coleira vermelha
+                                                foi achado perto do metrô Vila Mariana.</p>
+                                            <a class="chat__link" href="pets.html?caso=1#mapa">Ver no mapa</a>
+                                            <time class="chat__hora">20:16</time>
+                                        </div>
+                                    </li>
+                                </ol>
+
+                                <div class="chat__entrada" aria-hidden="true">
+                                    <span class="chat__campo">Mensagem</span>
+                                    <span class="chat__microfone">
+                                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4"
+                                            stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                                            <rect x="17" y="5" width="14" height="24" rx="7" />
+                                            <path d="M10 22a14 14 0 0 0 28 0M24 36v7" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <figcaption class="telegram__legenda">Simulação de uma conversa com o assistente do PetAlerta
+                            no Telegram.</figcaption>
+                    </figure>
+
+                    <ul class="telegram__recursos">
+                        <li class="icone-texto">
+                            <span class="icone-bolha icone-bolha--clara"><img src="assets/icons/microfone.svg" alt=""
+                                    width="34" height="34"></span>
+                            <div>
+                                <h3>Conte por texto ou por áudio</h3>
+                                <p>Grave uma mensagem de voz dizendo como é o animal, onde e quando ele foi visto. O
+                                    assistente entende o áudio e transforma tudo em um aviso completo, o que ajuda muito
+                                    quem tem dificuldade para digitar.</p>
+                            </div>
+                        </li>
+                        <li class="icone-texto">
+                            <span class="icone-bolha icone-bolha--clara"><img src="assets/icons/chat.svg" alt=""
+                                    width="34" height="34"></span>
+                            <div>
+                                <h3>Ele pergunta só o que falta</h3>
+                                <p>Espécie, porte, cor, bairro e data: o chatbot confere o que você já contou e pede o
+                                    resto, uma pergunta de cada vez, com botões de resposta rápida.</p>
+                            </div>
+                        </li>
+                        <li class="icone-texto">
+                            <span class="icone-bolha icone-bolha--clara"><img src="assets/icons/sino.svg" alt=""
+                                    width="34" height="34"></span>
+                            <div>
+                                <h3>Avisos na hora, direto no celular</h3>
+                                <p>Quando alguém registra um animal parecido ou envia uma pista, a mensagem chega na
+                                    conversa com a porcentagem de semelhança e o link para ver o caso no mapa.</p>
+                            </div>
+                        </li>
+                        <li class="icone-texto">
+                            <span class="icone-bolha icone-bolha--clara"><img src="assets/icons/escudo.svg" alt=""
+                                    width="34" height="34"></span>
+                            <div>
+                                <h3>Seu número continua privado</h3>
+                                <p>A vizinhança fala com você pelo PetAlerta, sem ver seu telefone. Quando o animal
+                                    voltar para casa, é só avisar o assistente para encerrar o anúncio.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="cartao telegram__comecar">
+                    <div>
+                        <h3>Comece em menos de um minuto</h3>
+                        <ol class="lista-numerada telegram__passos">
+                            <li>Abra o <strong>Telegram</strong> no celular ou no computador.</li>
+                            <li>Na busca do Telegram, procure <strong>@PetAlertaBot</strong>.</li>
+                            <li>Toque em <strong>Começar</strong> e conte o que aconteceu.</li>
+                        </ol>
+                    </div>
+                    <div class="telegram__cta">
+                        <a class="botao botao--telegram botao--grande" href="https://t.me/PetAlertaBot"
+                            target="_blank" rel="noopener">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="4"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M43 5 29.5 43l-7.5-17L5 18.5z" />
+                                <path d="M43 5 22 26" />
+                            </svg>
+                            Conversar no Telegram
+                            <span class="visualmente-oculto">(abre em uma nova aba)</span>
+                        </a>
+                        <p class="telegram__nota">Grátis · 24 horas por dia · sem cadastro no site</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -146,8 +343,8 @@
                     <li class="cartao recurso">
                         <span class="icone-bolha"><img src="assets/icons/chat.svg" alt="" width="34" height="34"></span>
                         <h3>Conte por texto ou áudio</h3>
-                        <p>Pelo site ou pelo nosso aplicativo, escreva ou grave um áudio contando a aparência do animal,
-                            onde ele foi visto e qualquer detalhe que ajude.</p>
+                        <p>Escreva no site ou grave um áudio para o nosso assistente no Telegram contando a aparência do
+                            animal, onde ele foi visto e qualquer detalhe que ajude.</p>
                     </li>
                     <li class="cartao recurso">
                         <span class="icone-bolha"><img src="assets/icons/escudo.svg" alt="" width="34"
@@ -307,8 +504,9 @@
                 <div>
                     <h2 class="rodape__titulo">Ajuda</h2>
                     <ul class="rodape__links">
-                        <li><a href="pets.html">Mural de animais</a></li>
+                        <li><a href="pets.html">Pets perdidos</a></li>
                         <li><a href="anunciar.html">Anunciar um animal</a></li>
+                        <li><a href="index.html#telegram">Assistente no Telegram</a></li>
                         <li><a href="faq.html">Perguntas frequentes</a></li>
                     </ul>
                 </div>

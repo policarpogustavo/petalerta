@@ -31,9 +31,12 @@
     --mapa-parque: #D5EBCB;
     --mapa-parque-borda: #BCDDAF;
     --mapa-agua: #AFDAE8;
-    --mapa-via: #FFFFFF;
+    --mapa-via: var(--branco);
     --mapa-via-borda: #E5D8C4;
     --mapa-rotulo: #806D57;
+    --mapa-rotulo-bairro: #5A4632;
+    --mapa-rotulo-parque: #3F6E35;
+    --mapa-rotulo-rio: #3E7F96;
 
     display: grid;
     gap: var(--espaco-3);
@@ -217,7 +220,7 @@
     position: absolute;
     inset: 0;
     background-color: var(--tom);
-    border: 3px solid #FFFFFF;
+    border: 3px solid var(--cor-superficie);
     border-radius: 50% 50% 50% 0;
     box-shadow: 0 3px 8px rgb(31 41 51 / 0.3);
     rotate: -45deg;
@@ -233,7 +236,7 @@
     font-size: calc(var(--tamanho) * 0.46);
     font-weight: 800;
     line-height: 1;
-    color: #FFFFFF;
+    color: var(--cor-texto-invertido);
 }
 
 .pino[data-situacao="achado"]::after {
@@ -318,14 +321,14 @@
     width: 1.25rem;
     height: 1.25rem;
     background-color: var(--cor-acao);
-    border: 3px solid #FFFFFF;
+    border: 3px solid var(--cor-superficie);
     border-radius: 50%;
     translate: -50% -50%;
 }
 
 .mapa__marca span {
     bottom: calc(100% + 6px);
-    color: #FFFFFF;
+    color: var(--cor-texto-invertido);
     background-color: var(--cor-acao);
 }
 
@@ -337,11 +340,11 @@
 
 @keyframes mapa-pulso {
     from {
-        box-shadow: 0 0 0 0 rgb(194 65 12 / 0.5);
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--cor-acao) 50%, transparent);
     }
 
     to {
-        box-shadow: 0 0 0 16px rgb(194 65 12 / 0);
+        box-shadow: 0 0 0 16px transparent;
     }
 }
 
@@ -360,7 +363,7 @@
 .mapa__rotulo--bairro {
     font-size: 0.82rem;
     font-weight: 800;
-    color: #5A4632;
+    color: var(--mapa-rotulo-bairro);
 }
 
 .mapa__rotulo--parque,
@@ -372,11 +375,11 @@
 
 .mapa__rotulo--parque {
     display: none;
-    color: #3F6E35;
+    color: var(--mapa-rotulo-parque);
 }
 
 .mapa__rotulo--rio {
-    color: #3E7F96;
+    color: var(--mapa-rotulo-rio);
 }
 
 /* Detalhes que só aparecem com o mapa aproximado */
@@ -411,7 +414,7 @@
     padding: var(--espaco-2) var(--espaco-2) var(--espaco-2) var(--espaco-4);
     font-size: var(--texto-p);
     font-weight: 700;
-    color: #FFFFFF;
+    color: var(--cor-texto-invertido);
     background-color: var(--cor-marca-forte);
     border-radius: var(--raio);
     box-shadow: var(--sombra-3);
@@ -479,7 +482,7 @@
 .legenda-area {
     width: 1.1rem;
     height: 1.1rem;
-    background-color: rgb(180 35 24 / 0.1);
+    background-color: color-mix(in srgb, var(--cor-perdido) 10%, transparent);
     border: 2px dashed var(--cor-perdido);
     border-radius: 50%;
 }

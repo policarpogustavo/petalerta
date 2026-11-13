@@ -23,7 +23,7 @@
     <script src="js/cards.js" defer></script>
     <script src="js/validacao.js" defer></script>
     <script src="js/mapa.js" defer></script>
-    <script src="js/mural.js" defer></script>
+    <script src="js/pets.js" defer></script>
 </head>
 
 <body>
@@ -46,7 +46,7 @@
             <nav class="menu" id="menu-principal" aria-label="Menu principal">
                 <ul class="menu__lista">
                     <li><a class="menu__link" href="index.html">Início</a></li>
-                    <li><a class="menu__link" href="pets.html" aria-current="page">Pets Perdidos</a></li>
+                    <li><a class="menu__link" href="pets.html" aria-current="page">Pets perdidos</a></li>
                     <li><a class="menu__link" href="sobre.html">Sobre</a></li>
                     <li><a class="menu__link" href="faq.html">FAQ</a></li>
                     <li><a class="menu__link" href="integrantes.html">Integrantes</a></li>
@@ -177,7 +177,7 @@
                         <p class="mapa__status visualmente-oculto" aria-live="polite"></p>
                     </section>
 
-                    <!-- Painel: o mural.js troca este conteúdo pelos detalhes do caso escolhido -->
+                    <!-- Painel: o pets.js troca este conteúdo pelos detalhes do caso escolhido -->
                     <aside class="cartao painel" id="painel" aria-labelledby="painel-titulo">
                         <div class="painel__inicio">
                             <span class="icone-bolha icone-bolha--grande"><img src="assets/icons/mapa.svg" alt=""
@@ -213,7 +213,7 @@
                         <p class="modal__subtitulo" id="modal-animal"></p>
                     </div>
                     <button class="botao botao--fantasma botao--icone" type="button" data-fechar
-                        aria-label="Fechar janela"> ×</button>
+                        aria-label="Fechar janela">×</button>
                 </header>
 
                 <form class="formulario" id="form-pista" novalidate>
@@ -270,6 +270,7 @@
                     <ul class="rodape__links">
                         <li><a href="pets.html">Pets perdidos</a></li>
                         <li><a href="anunciar.html">Anunciar um animal</a></li>
+                        <li><a href="index.html#telegram">Assistente no Telegram</a></li>
                         <li><a href="faq.html">Perguntas frequentes</a></li>
                     </ul>
                 </div>

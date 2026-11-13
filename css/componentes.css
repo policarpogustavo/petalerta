@@ -6,13 +6,13 @@
     7. Selo             8. Ícone em bolha   9. Listas
     10. Formulários     11. Mensagens       12. Modal
     13. Abas            14. Acordeão        15. Card de caso
-    16. Rodapé
+    16. Balão flutuante 17. Rodapé
    ========================================================== */
 
 /* ---------- 1. Situações ----------
     O atributo data-situacao diz O QUE o elemento é (perdido, achado...).
     Aqui ele vira duas variáveis, --tom e --tom-fundo, que selos, cards,
-   pinos e áreas do mapa usam. Assim cada cor é definida uma vez só. */
+    pinos e áreas do mapa usam. Assim cada cor é definida uma vez só. */
 [data-situacao="perdido"] {
     --tom: var(--cor-perdido);
     --tom-fundo: var(--cor-perdido-fundo);
@@ -73,21 +73,18 @@
 }
 
 .marca__nome span {
-    color: var(--cor-acao);
+    color: var(--cor-acento);
 }
 
+/* Versão para fundo escuro (rodapé) */
 .marca--clara,
 .marca--clara:hover {
-    color: #FFFFFF;
-}
-
-.marca--clara .marca__nome span {
-    color: var(--laranja-300);
+    color: var(--cor-texto-invertido);
 }
 
 .marca--clara .marca__icone {
     padding: 3px;
-    background-color: #FFFFFF;
+    background-color: var(--cor-superficie);
     border-radius: 50%;
 }
 
@@ -96,7 +93,8 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background-color: rgb(255 251 245 / 0.9);
+    background-color: var(--cor-fundo);
+    background-color: color-mix(in srgb, var(--cor-fundo) 90%, transparent);
     border-bottom: 1px solid var(--cor-borda);
     backdrop-filter: saturate(1.4) blur(10px);
 }
@@ -157,7 +155,7 @@
     box-shadow: var(--sombra-2);
 }
 
-.botao-menu[aria-expanded="true"]+.menu {
+.botao-menu[aria-expanded="true"] + .menu {
     display: block;
 }
 
@@ -185,14 +183,14 @@
 .menu__link--destaque,
 .menu__link--destaque[aria-current="page"] {
     margin-top: var(--espaco-2);
-    color: #FFFFFF;
+    color: var(--cor-texto-invertido);
     text-align: center;
     background-color: var(--cor-acao);
     border-radius: var(--raio-total);
 }
 
 .menu__link--destaque:hover {
-    color: #FFFFFF;
+    color: var(--cor-texto-invertido);
     background-color: var(--cor-acao-forte);
 }
 
@@ -232,10 +230,10 @@
 /* ---------- 5. Botões ----------
    Cada variação só troca as variáveis; o visual é escrito uma vez em .botao */
 .botao {
-    --botao-texto: #FFFFFF;
+    --botao-texto: var(--cor-texto-invertido);
     --botao-fundo: var(--cor-acao);
     --botao-borda: var(--cor-acao);
-    --botao-texto-hover: #FFFFFF;
+    --botao-texto-hover: var(--cor-texto-invertido);
     --botao-fundo-hover: var(--cor-acao-forte);
 
     display: inline-flex;
@@ -289,10 +287,30 @@
     --botao-fundo-hover: var(--cor-marca-suave);
 }
 
+/* Abre a conversa com o assistente no Telegram */
+.botao--telegram {
+    --botao-fundo: var(--cor-telegram);
+    --botao-borda: var(--cor-telegram);
+    --botao-fundo-hover: var(--cor-telegram-forte);
+}
+
 .botao--pequeno {
     min-height: 40px;
     padding: 0.45rem 1rem;
     font-size: var(--texto-p);
+}
+
+/* No celular o botão grande só fica mais alto; a letra cresce a partir do tablet */
+.botao--grande {
+    min-height: 56px;
+    padding: 0.85rem 1.25rem;
+}
+
+@media (min-width: 640px) {
+    .botao--grande {
+        padding-inline: 1.75rem;
+        font-size: var(--texto-g);
+    }
 }
 
 .botao--icone {
@@ -316,7 +334,7 @@
 
 /* ---------- 6. Cartão (caixa branca com borda) ---------- */
 .cartao {
-    padding: var(--espaco-5);
+    padding: var(--espaco-cartao);
     background-color: var(--cor-superficie);
     border: 1px solid var(--cor-borda);
     border-radius: var(--raio-g);
@@ -328,19 +346,13 @@
     box-shadow: none;
 }
 
-@media (min-width: 768px) {
-    .cartao {
-        padding: var(--espaco-6);
-    }
-}
-
 /* ---------- 7. Selo de situação (sempre com texto, nunca só cor) ---------- */
 .selo {
     display: inline-flex;
     align-items: center;
     gap: 0.4em;
     padding: 0.15rem 0.7rem;
-    font-size: 0.875rem;
+    font-size: var(--texto-pp);
     font-weight: 700;
     line-height: 1.5;
     color: var(--tom, var(--cor-marca));
@@ -373,11 +385,17 @@
 }
 
 .icone-bolha--acao {
-    background-color: var(--laranja-100);
+    background-color: var(--cor-acao-clara);
 }
 
 .icone-bolha--sucesso {
     background-color: var(--cor-reencontrado-fundo);
+}
+
+/* Bolha branca, para fundos já coloridos */
+.icone-bolha--clara {
+    background-color: var(--cor-superficie);
+    box-shadow: var(--sombra-1);
 }
 
 .icone-bolha--grande {
@@ -427,7 +445,7 @@
     border-radius: 50%;
 }
 
-/* Passo a passo com número em bolinha */
+/* Passo a passo com número em bolinha (a cor pode mudar com --cor-numero) */
 .lista-numerada {
     display: grid;
     gap: var(--espaco-3);
@@ -451,8 +469,8 @@
     height: 1.85rem;
     font-size: 0.95rem;
     font-weight: 800;
-    color: #FFFFFF;
-    background-color: var(--cor-acao);
+    color: var(--cor-texto-invertido);
+    background-color: var(--cor-numero, var(--cor-acao));
     border-radius: 50%;
 }
 
@@ -518,7 +536,7 @@
 }
 
 .campo__entrada:hover {
-    border-color: var(--grafite-600);
+    border-color: var(--cor-texto-suave);
 }
 
 .campo__entrada:focus {
@@ -526,7 +544,7 @@
 }
 
 .campo__entrada::placeholder {
-    color: var(--grafite-400);
+    color: var(--cor-texto-apagado);
 }
 
 textarea.campo__entrada {
@@ -548,7 +566,7 @@ select.campo__entrada {
 /* Estado de erro: borda vermelha + mensagem com ícone */
 .campo__entrada[aria-invalid="true"] {
     border-color: var(--cor-erro);
-    background-color: #FFFBFA;
+    background-color: var(--cor-erro-fundo);
 }
 
 .campo__erro {
@@ -626,23 +644,23 @@ select.campo__entrada {
     border-radius: 50%;
 }
 
-.escolha__radio:checked+.escolha__rotulo {
+.escolha__radio:checked + .escolha__rotulo {
     background-color: var(--cor-marca-suave);
     border-color: var(--cor-marca);
 }
 
-.escolha__radio:checked+.escolha__rotulo::after {
+.escolha__radio:checked + .escolha__rotulo::after {
     background-color: var(--cor-marca);
     border-color: var(--cor-marca);
-    box-shadow: inset 0 0 0 4px #FFFFFF;
+    box-shadow: inset 0 0 0 4px var(--cor-superficie);
 }
 
-.escolha__radio:focus-visible+.escolha__rotulo {
-    outline: 3px solid var(--cor-acao);
+.escolha__radio:focus-visible + .escolha__rotulo {
+    outline: 3px solid var(--cor-foco);
     outline-offset: 3px;
 }
 
-.escolha__radio[aria-invalid="true"]+.escolha__rotulo {
+.escolha__radio[aria-invalid="true"] + .escolha__rotulo {
     border-color: var(--cor-erro);
 }
 
@@ -685,6 +703,8 @@ select.campo__entrada {
     box-shadow: var(--sombra-3);
 }
 
+/* O fundo do modal fica fora da página: por isso a cor vai escrita aqui
+   (é o petróleo da marca com transparência) */
 .modal::backdrop {
     background-color: rgb(8 58 67 / 0.55);
     backdrop-filter: blur(3px);
@@ -773,7 +793,7 @@ select.campo__entrada {
 }
 
 .abas__botao[aria-selected="true"] {
-    color: #FFFFFF;
+    color: var(--cor-texto-invertido);
     background-color: var(--cor-marca);
 }
 
@@ -792,7 +812,7 @@ select.campo__entrada {
 }
 
 .acordeao__item:has([aria-expanded="true"]) {
-    border-color: var(--petroleo-300);
+    border-color: var(--cor-marca-media);
     box-shadow: var(--sombra-2);
 }
 
@@ -972,20 +992,57 @@ select.campo__entrada {
     border-radius: inherit;
 }
 
-/* ---------- 16. Rodapé ---------- */
+/* ---------- 16. Balão flutuante ----------
+   Enfeite sobre ilustrações (sempre com aria-hidden no HTML).
+   A posição de cada balão fica na seção onde ele aparece. */
+.balao {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-2);
+    padding: 0.5rem 0.9rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    white-space: nowrap;
+    color: var(--cor-texto);
+    background-color: var(--cor-superficie);
+    border-radius: var(--raio-total);
+    box-shadow: var(--sombra-2);
+}
+
+.balao img {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .balao {
+        animation: flutuar 5s ease-in-out infinite;
+    }
+}
+
+@keyframes flutuar {
+    50% {
+        translate: 0 -8px;
+    }
+}
+
+/* ---------- 17. Rodapé ---------- */
 .rodape {
-    --cor-titulo: #FFFFFF;
+    --cor-titulo: var(--cor-texto-invertido);
+    --cor-acento: var(--cor-acao-media);
+    --cor-foco: var(--cor-acao-media);
     padding-top: var(--espaco-7);
-    color: var(--petroleo-100);
+    color: var(--cor-marca-clara);
     background-color: var(--cor-marca-forte);
 }
 
 .rodape a {
-    color: #FFFFFF;
+    color: var(--cor-texto-invertido);
 }
 
 .rodape a:hover {
-    color: var(--laranja-300);
+    color: var(--cor-acento);
 }
 
 .rodape__grade {
@@ -1010,7 +1067,7 @@ select.campo__entrada {
     font-size: var(--texto-p);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--petroleo-300);
+    color: var(--cor-marca-media);
 }
 
 .rodape__links a {

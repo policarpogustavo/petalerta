@@ -9,8 +9,8 @@
 .topo-pagina {
     padding-block: var(--espaco-7) var(--espaco-6);
     background:
-        radial-gradient(50rem 18rem at 100% 0%, var(--laranja-50), transparent 70%),
-        radial-gradient(40rem 18rem at 0% 100%, var(--petroleo-50), transparent 70%);
+        radial-gradient(50rem 18rem at 100% 0%, var(--cor-acao-suave), transparent 70%),
+        radial-gradient(40rem 18rem at 0% 100%, var(--cor-marca-suave), transparent 70%);
 }
 
 /* O limite de largura fica nos filhos: no próprio .container ele centralizaria o bloco */
@@ -20,19 +20,21 @@
     justify-items: start;
 }
 
-.topo-pagina__conteudo>* {
+.topo-pagina__conteudo > * {
     max-width: 48rem;
 }
 
-/* ---------- 2. Início ---------- */
+/* ---------- 2. Início ----------
+   2.1 Hero   2.2 Como funciona   2.3 Assistente no Telegram
+   2.4 Recursos   2.5 Impacto   2.6 Quem acha   2.7 Procurados */
 
-/* Hero */
+/* 2.1 Hero */
 .hero {
     overflow: hidden;
-    padding-block: var(--espaco-7);
+    padding-block: var(--espaco-secao);
     background:
-        radial-gradient(40rem 30rem at 92% 8%, var(--laranja-100), transparent 65%),
-        radial-gradient(36rem 26rem at 0% 100%, var(--petroleo-100), transparent 60%);
+        radial-gradient(40rem 30rem at 92% 8%, var(--cor-acao-clara), transparent 65%),
+        radial-gradient(36rem 26rem at 0% 100%, var(--cor-marca-clara), transparent 60%);
 }
 
 .hero__grade {
@@ -60,7 +62,6 @@
 
 /* No celular os botões principais ocupam a largura toda */
 @media (max-width: 639px) {
-
     .hero__acoes,
     .quem-acha__acoes {
         width: 100%;
@@ -91,21 +92,7 @@
     filter: drop-shadow(0 24px 40px rgb(8 58 67 / 0.18));
 }
 
-/* Balões que flutuam sobre a ilustração (decorativos) */
-.hero__balao {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: var(--espaco-2);
-    padding: 0.5rem 0.9rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    white-space: nowrap;
-    background-color: var(--cor-superficie);
-    border-radius: var(--raio-total);
-    box-shadow: var(--sombra-2);
-}
-
+/* Posição dos balões que flutuam sobre a ilustração */
 .hero__balao--visto {
     top: 4%;
     left: 2%;
@@ -115,29 +102,10 @@
     right: 2%;
     bottom: 8%;
     color: var(--cor-sucesso);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .hero__balao {
-        animation: flutuar 5s ease-in-out infinite;
-    }
-
-    .hero__balao--combina {
-        animation-delay: -2.5s;
-    }
-}
-
-@keyframes flutuar {
-    50% {
-        translate: 0 -8px;
-    }
+    animation-delay: -2.5s;
 }
 
 @media (min-width: 1024px) {
-    .hero {
-        padding-block: var(--espaco-8);
-    }
-
     .hero__grade {
         grid-template-columns: 1.1fr 1fr;
     }
@@ -151,7 +119,52 @@
     }
 }
 
-/* Como funciona: passos ligados por uma linha tracejada.
+/* Atalho "Prefere conversar?" que leva à seção do Telegram */
+.atalho-telegram {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espaco-3);
+    padding: 0.4rem 1.1rem 0.4rem 0.4rem;
+    font-size: var(--texto-p);
+    line-height: 1.35;
+    color: var(--cor-texto);
+    text-decoration: none;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-telegram-clara);
+    border-radius: var(--raio-g);
+    box-shadow: var(--sombra-1);
+    transition: border-color var(--transicao), box-shadow var(--transicao), translate var(--transicao);
+}
+
+.atalho-telegram:hover {
+    color: var(--cor-texto);
+    border-color: var(--cor-telegram);
+    box-shadow: var(--sombra-2);
+    translate: 0 -2px;
+}
+
+.atalho-telegram strong {
+    color: var(--cor-telegram-forte);
+}
+
+.atalho-telegram__icone {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    color: var(--cor-texto-invertido);
+    background-color: var(--cor-telegram);
+    border-radius: 50%;
+}
+
+.atalho-telegram__icone svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    translate: -1px 1px;
+}
+
+/* 2.2 Como funciona: passos ligados por uma linha tracejada.
    O número vem de um contador do CSS (a <ol> já indica a ordem). */
 .passos {
     display: grid;
@@ -176,10 +189,10 @@
     height: 3rem;
     font-size: 1.25rem;
     font-weight: 800;
-    color: #FFFFFF;
+    color: var(--cor-texto-invertido);
     background-color: var(--cor-acao);
     border-radius: 50%;
-    box-shadow: 0 0 0 6px var(--laranja-100);
+    box-shadow: 0 0 0 6px var(--cor-acao-clara);
 }
 
 .passo:not(:last-child)::after {
@@ -188,7 +201,7 @@
     top: 3.75rem;
     bottom: calc(-1 * var(--espaco-6) + 0.75rem);
     left: 1.5rem;
-    border-left: 2px dashed var(--laranja-300);
+    border-left: 2px dashed var(--cor-acao-media);
 }
 
 .passo h3 {
@@ -215,11 +228,461 @@
         left: 4.25rem;
         right: calc(-1 * var(--espaco-5) + 0.75rem);
         border-left: 0;
-        border-top: 2px dashed var(--laranja-300);
+        border-top: 2px dashed var(--cor-acao-media);
     }
 }
 
-/* Impacto em números */
+/* 2.3 Assistente no Telegram
+   No celular: título → conversa → recursos → como começar.
+   No computador: texto à esquerda e a conversa ao lado. */
+.telegram {
+    --cor-acento: var(--cor-telegram-forte);
+    overflow: hidden;
+    background:
+        radial-gradient(46rem 32rem at 100% 0%, var(--cor-telegram-clara), transparent 65%),
+        radial-gradient(38rem 28rem at 0% 100%, var(--cor-marca-suave), transparent 60%),
+        var(--cor-telegram-suave);
+}
+
+.telegram__grade {
+    display: grid;
+    gap: var(--espaco-7);
+    grid-template-areas:
+        "cabecalho"
+        "demo"
+        "recursos";
+}
+
+.telegram__grade > .cabecalho-secao {
+    grid-area: cabecalho;
+    margin-bottom: 0;
+}
+
+.telegram__recursos {
+    grid-area: recursos;
+    display: grid;
+    gap: var(--espaco-5);
+    align-content: start;
+}
+
+.telegram__recursos .icone-texto :is(h2, h3) {
+    font-size: var(--texto-g);
+}
+
+.telegram__demo {
+    grid-area: demo;
+    position: relative;
+    justify-self: center;
+    width: min(100%, 22rem);
+}
+
+.telegram__legenda {
+    margin-top: var(--espaco-4);
+    font-size: var(--texto-pp);
+    text-align: center;
+    color: var(--cor-texto-suave);
+}
+
+/* Balões em volta do celular (só onde há espaço).
+   Ficam sobre o topo e o campo de digitar, sem cobrir as mensagens. */
+.telegram__balao {
+    z-index: 2;
+}
+
+.telegram__balao--pista {
+    top: 8%;
+    right: -26%;
+}
+
+.telegram__balao--audio {
+    bottom: 2.5%;
+    left: -22%;
+    animation-delay: -2.5s;
+}
+
+@media (max-width: 639px) {
+    .telegram__balao {
+        display: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    .telegram__grade {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+            "cabecalho demo"
+            "recursos demo";
+        gap: var(--espaco-6) var(--espaco-8);
+    }
+
+    .telegram__demo {
+        align-self: center;
+    }
+}
+
+/* Faixa "Comece em menos de um minuto" */
+.telegram__comecar {
+    display: grid;
+    gap: var(--espaco-5);
+    margin-top: var(--espaco-7);
+    border-color: var(--cor-telegram-clara);
+    box-shadow: var(--sombra-2);
+}
+
+.telegram__comecar h3 {
+    margin-bottom: var(--espaco-4);
+}
+
+.telegram__passos {
+    --cor-numero: var(--cor-telegram);
+}
+
+.telegram__cta {
+    display: grid;
+    gap: var(--espaco-2);
+    justify-items: center;
+}
+
+.telegram__nota {
+    font-size: var(--texto-pp);
+    color: var(--cor-texto-suave);
+}
+
+@media (max-width: 639px) {
+    .telegram__cta,
+    .telegram__cta .botao {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .telegram__passos {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--espaco-5);
+    }
+}
+
+@media (min-width: 1024px) {
+    .telegram__comecar {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        column-gap: var(--espaco-7);
+    }
+}
+
+/* Celular de enfeite em volta da conversa */
+.celular {
+    --celular-moldura: var(--grafite-950);
+    position: relative;
+    padding: 0.6rem;
+    background-color: var(--celular-moldura);
+    border-radius: 2.9rem;
+    box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.1), var(--sombra-3);
+}
+
+/* Câmera no topo da tela */
+.celular::before {
+    content: "";
+    position: absolute;
+    top: 1.1rem;
+    left: 50%;
+    z-index: 1;
+    width: 5.5rem;
+    height: 1.5rem;
+    background-color: var(--celular-moldura);
+    border-radius: var(--raio-total);
+    translate: -50% 0;
+}
+
+/* Botão lateral */
+.celular::after {
+    content: "";
+    position: absolute;
+    top: 22%;
+    right: -3px;
+    width: 3px;
+    height: 4.5rem;
+    background-color: var(--celular-moldura);
+    border-radius: 0 3px 3px 0;
+}
+
+/* Conversa de exemplo, imitando um chat do Telegram */
+.chat {
+    --chat-fundo: var(--areia-200);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-size: var(--texto-pp);
+    line-height: 1.4;
+    /* Papel de parede com patinhas */
+    background: var(--chat-fundo) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='%230B5563' fill-opacity='.07'%3E%3Cg transform='translate(22 26) rotate(-20)'%3E%3Cellipse cy='5' rx='7' ry='6'/%3E%3Ccircle cx='-7.5' cy='-3' r='2.8'/%3E%3Ccircle cx='-2.6' cy='-7.6' r='3'/%3E%3Ccircle cx='2.6' cy='-7.6' r='3'/%3E%3Ccircle cx='7.5' cy='-3' r='2.8'/%3E%3C/g%3E%3Cg transform='translate(70 70) rotate(18)'%3E%3Cellipse cy='5' rx='7' ry='6'/%3E%3Ccircle cx='-7.5' cy='-3' r='2.8'/%3E%3Ccircle cx='-2.6' cy='-7.6' r='3'/%3E%3Ccircle cx='2.6' cy='-7.6' r='3'/%3E%3Ccircle cx='7.5' cy='-3' r='2.8'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    border-radius: 2.3rem;
+}
+
+.chat__topo {
+    display: grid;
+    gap: var(--espaco-2);
+    padding: 0.85rem var(--espaco-5) var(--espaco-3);
+    color: var(--cor-texto-invertido);
+    background-color: var(--cor-telegram);
+}
+
+/* Barra de status: hora, sinal e bateria */
+.chat__status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 1.5rem;
+    padding-inline: var(--espaco-2);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.chat__status svg {
+    width: 2.6rem;
+    height: 0.8rem;
+}
+
+.chat__contato {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-3);
+    line-height: 1.25;
+}
+
+.chat__avatar {
+    width: 2.6rem;
+    height: 2.6rem;
+    padding: 3px;
+    background-color: var(--cor-superficie);
+    border-radius: 50%;
+}
+
+.chat__contato p {
+    display: grid;
+}
+
+.chat__contato strong {
+    font-size: var(--texto-m);
+}
+
+.chat__contato small {
+    font-size: 0.8rem;
+}
+
+.chat__dia {
+    align-self: center;
+    margin-top: var(--espaco-3);
+    padding: 0.1rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--cor-texto-invertido);
+    background-color: color-mix(in srgb, var(--cor-marca) 80%, transparent);
+    border-radius: var(--raio-total);
+}
+
+.chat__mensagens {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-2);
+    padding: var(--espaco-3);
+}
+
+.chat__mensagem {
+    display: grid;
+    gap: var(--espaco-1);
+    max-width: 86%;
+}
+
+.chat__mensagem--bot {
+    align-self: flex-start;
+    justify-items: start;
+}
+
+.chat__mensagem--voce {
+    align-self: flex-end;
+    justify-items: end;
+}
+
+/* display: flow-root segura a hora, que flutua no fim do texto */
+.chat__balao {
+    display: flow-root;
+    padding: 0.45rem 0.75rem 0.35rem;
+    color: var(--cor-texto);
+    background-color: var(--cor-superficie);
+    border-radius: 1.1rem 1.1rem 1.1rem 0.3rem;
+    box-shadow: 0 1px 1px rgb(31 41 51 / 0.12);
+}
+
+.chat__mensagem--voce .chat__balao {
+    background-color: var(--cor-marca-clara);
+    border-radius: 1.1rem 1.1rem 0.3rem 1.1rem;
+}
+
+.chat__hora {
+    float: right;
+    margin: 0.4rem 0 -0.15rem 0.6rem;
+    font-size: 0.7rem;
+    line-height: 1;
+    color: var(--cor-texto-suave);
+}
+
+/* Botões de resposta rápida, logo abaixo da mensagem do assistente */
+.chat__respostas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espaco-1);
+}
+
+.chat__respostas li {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--cor-telegram-forte);
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-telegram-clara);
+    border-radius: var(--raio-total);
+}
+
+/* Mensagem de voz: botão de play, ondas do som e duração */
+.chat__audio {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-2);
+    margin-bottom: var(--espaco-1);
+}
+
+.chat__play {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    background-color: var(--cor-telegram);
+    border-radius: 50%;
+}
+
+.chat__play::before {
+    content: "";
+    margin-left: 0.2rem;
+    border-block: 0.4rem solid transparent;
+    border-left: 0.65rem solid var(--cor-texto-invertido);
+}
+
+.chat__onda {
+    width: 7rem;
+    height: 1.6rem;
+    color: var(--cor-telegram);
+}
+
+.chat__duracao {
+    font-size: 0.75rem;
+    color: var(--cor-texto-suave);
+}
+
+.chat__transcricao {
+    font-style: italic;
+}
+
+/* Mensagem com a combinação encontrada */
+.chat__balao--combinacao {
+    display: grid;
+    gap: var(--espaco-2);
+    justify-items: start;
+    padding-block: var(--espaco-3) var(--espaco-2);
+}
+
+.chat__balao--combinacao .chat__hora {
+    float: none;
+    justify-self: end;
+    margin: 0;
+}
+
+.chat__link {
+    justify-self: stretch;
+    padding: 0.45rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    color: var(--cor-telegram-forte);
+    background-color: var(--cor-telegram-suave);
+    border-radius: var(--raio);
+    transition: color var(--transicao), background-color var(--transicao);
+}
+
+.chat__link:hover {
+    color: var(--cor-texto-invertido);
+    background-color: var(--cor-telegram);
+}
+
+/* Campo de digitar, só de enfeite */
+.chat__entrada {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-2);
+    margin-top: auto;
+    padding: var(--espaco-2) var(--espaco-3) var(--espaco-4);
+    background-color: var(--cor-superficie);
+}
+
+.chat__campo {
+    flex: 1;
+    padding: 0.45rem 0.9rem;
+    color: var(--cor-texto-suave);
+    background-color: var(--cor-superficie-suave);
+    border-radius: var(--raio-total);
+}
+
+.chat__microfone {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    color: var(--cor-texto-invertido);
+    background-color: var(--cor-telegram);
+    border-radius: 50%;
+}
+
+.chat__microfone svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* As mensagens aparecem uma a uma quando a conversa entra na tela.
+   O inicio.js põe as classes e a ordem (--ordem) de cada mensagem. */
+@media screen and (prefers-reduced-motion: no-preference) {
+    .chat__mensagens--esperando > * {
+        opacity: 0;
+    }
+
+    .chat__mensagens--animando > * {
+        animation: chat-surgir 450ms ease-out backwards;
+        animation-delay: calc(var(--ordem, 0) * 700ms);
+    }
+}
+
+@keyframes chat-surgir {
+    from {
+        opacity: 0;
+        translate: 0 12px;
+        scale: 0.96;
+    }
+}
+
+/* 2.4 Recursos do PetAlerta */
+.recurso {
+    display: grid;
+    gap: var(--espaco-3);
+    align-content: start;
+}
+
+.recurso p {
+    color: var(--cor-texto-suave);
+}
+
+/* 2.5 Impacto em números */
 .numeros {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -227,7 +690,8 @@
 }
 
 /* O número vem antes no visual, mas o rótulo (dt) vem antes no HTML.
-   flex-end alinha todos os números no topo, mesmo com rótulos de 2 linhas. */
+   flex-end alinha todos os números no topo, mesmo com rótulos de 2 linhas.
+   Fundo e borda são um véu branco transparente sobre a seção escura. */
 .numero {
     display: flex;
     flex-direction: column-reverse;
@@ -265,21 +729,10 @@
     }
 }
 
-/* Recursos do PetAlerta */
-.recurso {
-    display: grid;
-    gap: var(--espaco-3);
-    align-content: start;
-}
-
-.recurso p {
-    color: var(--cor-texto-suave);
-}
-
-/* Quem acha também salva */
+/* 2.6 Quem acha também salva */
 .quem-acha {
     background:
-        radial-gradient(40rem 24rem at 100% 0%, var(--laranja-100), transparent 65%),
+        radial-gradient(40rem 24rem at 100% 0%, var(--cor-acao-clara), transparent 65%),
         var(--cor-acao-suave);
 }
 
@@ -315,11 +768,12 @@
     display: grid;
     gap: var(--espaco-4);
     overflow: hidden;
-    color: #FFFFFF;
+    color: var(--cor-texto-invertido);
     background-color: var(--cor-marca);
     border-color: var(--cor-marca);
 }
 
+/* Aspas grandes de enfeite no canto */
 .depoimento::after {
     content: "“";
     position: absolute;
@@ -338,11 +792,11 @@
 }
 
 .depoimento figcaption {
-    color: var(--petroleo-100);
+    color: var(--cor-marca-clara);
 }
 
 .depoimento figcaption strong {
-    color: #FFFFFF;
+    color: var(--cor-texto-invertido);
 }
 
 .depoimento small {
@@ -360,7 +814,7 @@
     font-size: 0.9rem;
     font-weight: 800;
     color: var(--cor-acao-forte);
-    background-color: var(--laranja-100);
+    background-color: var(--cor-acao-clara);
     border-radius: var(--raio-total);
 }
 
@@ -368,7 +822,7 @@
     width: 1.75rem;
     height: 1.75rem;
     padding: 0.3rem;
-    background-color: #FFFFFF;
+    background-color: var(--cor-superficie);
     border-radius: 50%;
 }
 
@@ -383,7 +837,7 @@
     }
 }
 
-/* Procurados agora (prévia do mural) */
+/* 2.7 Procurados agora (prévia do mural) */
 .procurados__topo {
     display: flex;
     flex-wrap: wrap;
@@ -491,7 +945,7 @@
 .agradecimento {
     padding: var(--espaco-4) var(--espaco-5);
     background-color: var(--cor-acao-suave);
-    border: 2px solid var(--laranja-300);
+    border: 2px solid var(--cor-acao-media);
     border-radius: var(--raio-g);
 }
 
@@ -517,7 +971,7 @@
     gap: var(--espaco-4);
 }
 
-.abas__painel>p,
+.abas__painel > p,
 .abas__painel li {
     max-width: 70ch;
 }
@@ -534,6 +988,7 @@
     margin-top: var(--espaco-2);
 }
 
+/* Cores oficiais (escurecidas para contraste) de cada ODS */
 .ods__numero {
     display: grid;
     flex-shrink: 0;
@@ -578,7 +1033,7 @@
     margin-bottom: var(--espaco-2);
     object-fit: cover;
     border-radius: 50%;
-    box-shadow: 0 0 0 4px var(--cor-superficie), 0 0 0 7px var(--petroleo-300);
+    box-shadow: 0 0 0 4px var(--cor-superficie), 0 0 0 7px var(--cor-marca-media);
 }
 
 .integrante h2 {
@@ -620,7 +1075,12 @@
 
 .canal--alerta {
     background-color: var(--cor-acao-suave);
-    border-color: var(--laranja-300);
+    border-color: var(--cor-acao-media);
+}
+
+.canal--telegram {
+    background-color: var(--cor-telegram-suave);
+    border-color: var(--cor-telegram-clara);
 }
 
 @media (min-width: 1024px) {

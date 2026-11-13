@@ -7,7 +7,9 @@
 /* ---------- 1. Variáveis ---------- */
 :root {
     /* Paleta da marca (cores "cruas").
-     Os componentes não usam estas: usam os papéis logo abaixo. */
+       Os componentes não usam estas: usam os papéis logo abaixo. */
+    --branco: #FFFFFF;
+
     --petroleo-50: #EEF6F6;
     --petroleo-100: #D3E9EA;
     --petroleo-300: #86C2C5;
@@ -22,27 +24,56 @@
 
     --areia-50: #FFFBF5;
     --areia-100: #FBF3E8;
+    --areia-200: #F4EBDD;
     --areia-300: #E6D8C5;
 
+    /* Azul do Telegram, um pouco mais escuro que o original
+       para o texto branco ter contraste AA (4,9:1) */
+    --ceu-50: #EAF5FB;
+    --ceu-100: #D2E9F6;
+    --ceu-600: #1877AB;
+    --ceu-700: #13699A;
+
+    --grafite-950: #141D24;
     --grafite-900: #1F2933;
     --grafite-600: #52606D;
     --grafite-400: #7B8794;
 
-    /* Papéis das cores: o que cada cor significa no site */
+    /* Papéis das cores: o que cada cor significa no site.
+       Escala de cada cor: suave (50) → clara (100) → média (300) → cor → forte */
     --cor-fundo: var(--areia-50);
-    --cor-superficie: #FFFFFF;
+    --cor-superficie: var(--branco);
     --cor-superficie-suave: var(--areia-100);
     --cor-borda: var(--areia-300);
     --cor-borda-campo: var(--grafite-400);
+
     --cor-texto: var(--grafite-900);
     --cor-texto-suave: var(--grafite-600);
+    --cor-texto-apagado: var(--grafite-400);
+    --cor-texto-invertido: var(--branco);
     --cor-titulo: var(--petroleo-900);
+
+    --cor-marca-suave: var(--petroleo-50);
+    --cor-marca-clara: var(--petroleo-100);
+    --cor-marca-media: var(--petroleo-300);
     --cor-marca: var(--petroleo-700);
     --cor-marca-forte: var(--petroleo-900);
-    --cor-marca-suave: var(--petroleo-50);
+
+    --cor-acao-suave: var(--laranja-50);
+    --cor-acao-clara: var(--laranja-100);
+    --cor-acao-media: var(--laranja-300);
     --cor-acao: var(--laranja-600);
     --cor-acao-forte: var(--laranja-700);
-    --cor-acao-suave: var(--laranja-50);
+
+    --cor-telegram-suave: var(--ceu-50);
+    --cor-telegram-clara: var(--ceu-100);
+    --cor-telegram: var(--ceu-600);
+    --cor-telegram-forte: var(--ceu-700);
+
+    /* Detalhes em destaque (sobretítulos, o "Alerta" da marca) e contorno de foco.
+       Os fundos escuros trocam estes dois por um laranja mais claro. */
+    --cor-acento: var(--cor-acao);
+    --cor-foco: var(--cor-acao);
 
     /* Situação de cada caso. A cor sempre vem junto de um texto. */
     --cor-perdido: #B42318;
@@ -54,10 +85,12 @@
     --cor-reencontrado: #067647;
     --cor-reencontrado-fundo: #DCFAE6;
     --cor-erro: var(--cor-perdido);
+    --cor-erro-fundo: #FFFBFA;
     --cor-sucesso: var(--cor-reencontrado);
 
     /* Tipografia: Atkinson Hyperlegible foi criada para leitores com baixa visão */
     --fonte: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
+    --texto-pp: 0.875rem;
     --texto-p: 1rem;
     --texto-m: 1.125rem;
     --texto-g: 1.25rem;
@@ -74,6 +107,8 @@
     --espaco-6: 2rem;
     --espaco-7: 3rem;
     --espaco-8: 4.5rem;
+    --espaco-secao: var(--espaco-7); /* em cima e embaixo de cada seção */
+    --espaco-cartao: var(--espaco-5); /* dentro dos cartões */
 
     /* Formas e movimento */
     --raio-p: 8px;
@@ -87,6 +122,19 @@
 
     --largura-maxima: 1200px;
     --altura-cabecalho: 72px;
+}
+
+/* Telas maiores ganham mais respiro: basta trocar as variáveis */
+@media (min-width: 768px) {
+    :root {
+        --espaco-cartao: var(--espaco-6);
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --espaco-secao: var(--espaco-8);
+    }
 }
 
 /* ---------- 2. Reset ---------- */
@@ -195,12 +243,12 @@ b {
 }
 
 :focus-visible {
-    outline: 3px solid var(--cor-acao);
+    outline: 3px solid var(--cor-foco);
     outline-offset: 3px;
 }
 
 ::selection {
-    background-color: var(--laranja-100);
+    background-color: var(--cor-acao-clara);
 }
 
 [hidden] {
@@ -219,8 +267,14 @@ b {
     margin-inline: auto;
 }
 
+@media (min-width: 768px) {
+    .container {
+        width: min(100% - 2 * var(--espaco-6), var(--largura-maxima));
+    }
+}
+
 .secao {
-    padding-block: var(--espaco-7);
+    padding-block: var(--espaco-secao);
 }
 
 .secao--sem-topo {
@@ -233,9 +287,11 @@ b {
 
 /* Seção escura: troca os papéis das cores e todo o conteúdo se adapta */
 .secao--marca {
-    --cor-titulo: #FFFFFF;
-    --cor-texto: #FFFFFF;
-    --cor-texto-suave: var(--petroleo-100);
+    --cor-titulo: var(--cor-texto-invertido);
+    --cor-texto: var(--cor-texto-invertido);
+    --cor-texto-suave: var(--cor-marca-clara);
+    --cor-acento: var(--cor-acao-media);
+    --cor-foco: var(--cor-acao-media);
     color: var(--cor-texto);
     background-color: var(--cor-marca);
 }
@@ -263,7 +319,7 @@ b {
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--cor-acao);
+    color: var(--cor-acento);
 }
 
 .sobretitulo::before {
@@ -272,10 +328,6 @@ b {
     height: 3px;
     background-color: currentColor;
     border-radius: 2px;
-}
-
-.secao--marca .sobretitulo {
-    color: var(--laranja-300);
 }
 
 .texto-apoio {
@@ -306,21 +358,7 @@ b {
     }
 }
 
-@media (min-width: 768px) {
-    .container {
-        width: min(100% - 2 * var(--espaco-6), var(--largura-maxima));
-    }
-}
-
 @media (min-width: 1024px) {
-    .secao {
-        padding-block: var(--espaco-8);
-    }
-
-    .secao--sem-topo {
-        padding-top: 0;
-    }
-
     .grade--3 {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -342,6 +380,6 @@ b {
 }
 
 /* Espaço entre parágrafos de um texto corrido */
-.fluxo>*+* {
+.fluxo > * + * {
     margin-top: var(--fluxo-espaco, 1em);
 }
