@@ -146,15 +146,18 @@ function htmlDoPainel(caso, combinacoes) {
     </article>`;
 }
 
-// Pares "título: texto" que resumem o caso, conforme a situação
+// Pares "título: texto" que resumem o caso, conforme a situação.
+// O lugar mostrado é o centro do círculo no mapa: o último ponto ou, num achado, o ponto de origem.
 function htmlDoResumo(caso) {
-    const ultimo = ultimoPonto(caso);
+    const centro = centroDaArea(caso);
     const raio = formatarDistancia(raioProvavel(caso));
-    const quando = `${escaparHTML(ultimo.ponto)}, ${textoDias(ultimo.data)}`;
+    const quando = `${escaparHTML(centro.ponto)}, ${textoDias(centro.data)}`;
+    // Num achado, a origem é o lugar onde ele foi encontrado, a não ser que alguém o tenha visto antes
+    const tituloDaOrigem = centro.data < caso.data ? "Visto pela primeira vez" : "Encontrado";
 
     const linhas = {
         perdido: [["Visto por último", quando], ["Área provável", `Até ${raio} ao redor desse ponto`]],
-        achado: [["Encontrado", quando], ["A família deve morar", `A até ${raio} daqui`]],
+        achado: [[tituloDaOrigem, quando], ["A família deve morar", `A até ${raio} daqui`]],
         risco: [["Visto", quando], ["Situação", caso.status === "encaminhado" ? "Encaminhado a um parceiro da região" : "Aguardando ajuda"]],
         reencontrado: [["Final feliz", `${tituloDoCaso(caso)} já voltou para casa. Obrigado a todos que ajudaram!`]],
     }[situacaoDoCaso(caso)];
@@ -209,7 +212,8 @@ function htmlDasDicas(caso) {
 function htmlDasCombinacoes(caso, combinacoes) {
     if (combinacoes.length === 0) return "";
 
-    const origem = ultimoPonto(caso).local;
+    // As distâncias saem do centro do círculo, o mesmo ponto de onde partem as ligações no mapa
+    const origem = centroDaArea(caso).local;
     const itens = combinacoes.map(({ caso: outro, pontos }) => `
     <li>
       <button class="combinacao" type="button" data-acao="ver" data-id="${outro.id}">

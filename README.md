@@ -77,7 +77,9 @@ petalerta/
   símbolo por situação; zoom animado, arrastar com o mouse e régua de escala
 - Área provável: parte do último lugar onde o animal foi visto e cresce a cada dia sem notícias
   (gato 300 m + 100 m/dia até 1,5 km; cachorro 600 m + 400 m/dia até 4 km; ave 800 m + 600 m/dia
-  até 5 km). Para um animal achado, mostra a área onde a família provavelmente mora
+  até 5 km). Para um animal achado, mostra a área onde a família provavelmente mora: o centro é o
+  ponto mais antigo em que ele foi visto (local do aviso ou avistamento com data anterior) e não
+  se move quando chegam avistamentos mais recentes
 - Marcar no mapa onde viu o animal: a pista vira um avistamento, entra no trajeto e a área é recalculada
 - Painel "Por onde procurar": resumo, trajeto, dicas por espécie e possíveis combinações com distância
 - Anunciar: formulário muda conforme "Perdi" ou "Achei" (atributo `data-mostrar-se`) e cruzamento

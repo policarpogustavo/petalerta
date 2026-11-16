@@ -1,7 +1,8 @@
 // ==========================================================
 // Mapa da busca (Mural)
 // Mostra onde cada animal foi visto e a área provável por onde
-// ele pode ter andado. Tudo é desenhado em SVG, sem bibliotecas:
+// ele pode ter andado (para um animal achado, a área onde a família
+// provavelmente mora). Tudo é desenhado em SVG, sem bibliotecas:
 // latitude e longitude viram posições x/y no desenho.
 // Depende de dados.js
 // ==========================================================
@@ -71,6 +72,23 @@ function trajetoDoCaso(caso) {
 function ultimoPonto(caso) {
     const trajeto = trajetoDoCaso(caso);
     return trajeto[trajeto.length - 1];
+}
+
+// Lugar mais antigo onde o animal foi visto: o local do aviso ou, se alguém
+// viu o animal antes do aviso, o avistamento com a data mais antiga.
+// Um avistamento novo só muda esse ponto se a data dele for anterior a todas as outras.
+function pontoDeOrigem(caso) {
+    const [aviso, primeiroAvistamento] = trajetoDoCaso(caso);
+    // Datas no formato AAAA-MM-DD podem ser comparadas como texto
+    const vistoAntesDoAviso = primeiroAvistamento !== undefined && primeiroAvistamento.data < aviso.data;
+    return vistoAntesDoAviso ? primeiroAvistamento : aviso;
+}
+
+// Centro do círculo e do enquadramento. Animal achado: o ponto de origem,
+// porque a família deve morar perto de onde ele foi visto primeiro.
+// Perdido, em risco ou reencontrado: o último lugar onde foi visto.
+function centroDaArea(caso) {
+    return situacaoDoCaso(caso) === "achado" ? pontoDeOrigem(caso) : ultimoPonto(caso);
 }
 
 // Raio da área provável, em metros (0 quando não há mais o que procurar)
@@ -383,7 +401,8 @@ class MapaDeBusca {
 
         const trajeto = trajetoDoCaso(caso);
         const pontos = trajeto.map((parada) => projetar(parada.local));
-        const centro = pontos[pontos.length - 1];
+        // Centro dos círculos e saída das ligações: o último ponto ou, num achado, o ponto de origem
+        const centro = projetar(centroDaArea(caso).local);
         const raio = raioProvavel(caso) / METROS_POR_UNIDADE;
 
         const area = raio > 0 ? `
@@ -407,7 +426,7 @@ class MapaDeBusca {
             this.adicionarMarcador(numero, avistamento.local, "busca");
         });
 
-        // Enquadra o trajeto e a área inteira, mostrando pelo menos ~1 km em volta do último ponto
+        // Enquadra o trajeto e a área inteira, mostrando pelo menos ~1 km em volta do centro
         const margem = Math.max(raio, 60);
         this.enquadrar([...pontos, { x: centro.x - margem, y: centro.y - margem }, { x: centro.x + margem, y: centro.y + margem }], 25);
     }
