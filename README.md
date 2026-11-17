@@ -1,4 +1,18 @@
-# PetAlerta
+<p align="center">
+  <img src="assets/icons/PetAlerta.svg" alt="Logotipo do PetAlerta: cachorro e gato com um coração dentro de um marcador de localização" width="120">
+</p>
+
+<h1 align="center">PetAlerta</h1>
+
+<p align="center">
+  Tecnologia para a vizinhança cuidar dos seus animais.<br>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
+</p>
 
 ## Descrição
 Quando um animal some, o aviso se perde em grupos de WhatsApp, e quem encontra
@@ -12,9 +26,14 @@ Projeto da Global Solution 2026/2 da FIAP, tema **CitizenTech** (ODS 3 e 11).
 Este repositório contém o front-end: um protótipo navegável com dados fictícios.
 
 ## Tecnologias utilizadas
-- HTML5 (estrutura semântica)
-- CSS3 (variáveis, Flexbox, Grid e Media Queries)
-- JavaScript (sem frameworks nem bibliotecas; o mapa também é feito à mão, em SVG)
+
+**Linguagens**
+- **HTML5:** estrutura semântica das 7 páginas
+- **CSS3:** visual e layout responsivo, com variáveis, Flexbox, Grid e Media Queries
+- **JavaScript:** toda a interatividade, sem frameworks nem bibliotecas (o mapa também é feito
+  à mão, em SVG)
+
+**Ferramentas e outros recursos**
 - Git e GitHub
 - Fonte Atkinson Hyperlegible Next (Google Fonts), criada para leitores com baixa visão
 
@@ -50,6 +69,7 @@ petalerta/
 │   └── contato.js      Envio simulado do contato
 └── assets/
     ├── images/         Ilustração da página inicial e avatar
+    │   └── prints/     Prints do site usados neste README
     └── icons/          Ícones SVG
 ```
 
@@ -95,6 +115,25 @@ petalerta/
 
 ## Imagens do projeto
 
+### Versão para computador
+
+**Página inicial**
+
+![Página inicial no computador: título "Perdeu ou achou um animal? Seu bairro ajuda.", botões "Perdi um animal" e "Achei um animal" e a ilustração de um mapa](assets/images/prints/inicio-computador.png)
+
+**Mural: filtros, mapa da busca e painel "Por onde procurar"**
+
+![Mural no computador: filtros, mapa com a área provável da cachorra Pipoca e o painel "Por onde procurar" com resumo, trajeto, dicas e uma combinação 100% compatível](assets/images/prints/mural-computador.png)
+
+| Anunciar e cruzamento de casos | Assistente no Telegram |
+|:---:|:---:|
+| <img src="assets/images/prints/anunciar-computador.png" alt="Página Anunciar no computador: depois do envio, o resultado mostra um cachorro achado 100% compatível" width="380"> | <img src="assets/images/prints/telegram-computador.png" alt="Seção do assistente no Telegram no computador, com a conversa de exemplo dentro de um celular" width="380"> |
+
+### Versão para celular
+
+| Página inicial | Menu aberto | Mural com o mapa | Enviar uma pista |
+|:---:|:---:|:---:|:---:|
+| <img src="assets/images/prints/inicio-celular.png" alt="Página inicial no celular, com os botões Perdi um animal e Achei um animal" width="175"> | <img src="assets/images/prints/menu-celular.png" alt="Menu do celular aberto, com os links das páginas e o botão Anunciar" width="175"> | <img src="assets/images/prints/mural-celular.png" alt="Mural no celular: mapa com a área provável da Pipoca, legenda e começo do painel" width="175"> | <img src="assets/images/prints/pista-celular.png" alt="Janela Vi este animal no celular, com os campos Onde você viu, Quando e Seu contato" width="175"> |
 
 ## Autores
 | Nome completo | RM | Turma | GitHub | LinkedIn |
@@ -109,7 +148,7 @@ petalerta/
 [github.com/policarpogustavo/petalerta](https://github.com/policarpogustavo/petalerta)
 
 ## Contato
-[TROCAR: e-mail do grupo ou de um integrante]
+Gustavo Policarpo: [gustavopolicarpo2001@gmail.com](mailto:gustavopolicarpo2001@gmail.com)
 
 ### Uso de IA generativa
 O Claude (Anthropic) foi usado apenas como apoio em três momentos do projeto:
