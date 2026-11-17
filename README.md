@@ -99,8 +99,8 @@ petalerta/
 ## Autores
 | Nome completo | RM | Turma | GitHub | LinkedIn |
 |---|---|---|---|---|
-| Gustavo Policarpo | 574269 | [turma] | [policarpogustavo](https://github.com/policarpogustavo) | [gupolicarpo](https://www.linkedin.com/in/gupolicarpo/) |
-| [Nome] | [RM] | [turma] | [link] | [link] |
+| Gustavo Policarpo | RM 574269 | [turma] | [policarpogustavo](https://github.com/policarpogustavo) | [gupolicarpo](https://www.linkedin.com/in/gupolicarpo/) |
+| Bruno Vieira de Godois | [RM 575296] | [1TDSPT] | [] | [brunovgodois](https://github.com/brunovgodois) | [brunovgodois](https://www.linkedin.com/in/brunovgodois/) |
 | [Nome] | [RM] | [turma] | [link] | [link] |
 | [Nome] | [RM] | [turma] | [link] | [link] |
 | [Nome] | [RM] | [turma] | [link] | [link] |
