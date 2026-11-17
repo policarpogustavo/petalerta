@@ -6,7 +6,6 @@
 
 <p align="center">
   Tecnologia para a vizinhança cuidar dos seus animais.<br>
-  Grátis para quem perdeu ou achou.
 </p>
 
 <p align="center">
