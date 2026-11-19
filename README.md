@@ -141,7 +141,7 @@ petalerta/
 | Gustavo Policarpo | RM 574269 | [1TDSPT] | [policarpogustavo](https://github.com/policarpogustavo) | [gupolicarpo](https://www.linkedin.com/in/gupolicarpo/) |
 | Bruno Vieira de Godois | [RM 575296] | [1TDSPT] | [brunovgodois](https://github.com/brunovgodois) | [brunovgodois](https://www.linkedin.com/in/brunovgodois/) |
 | Samuel da Silva Ribeiro | RM 576499 | [1TDSPT] |[SamuelRibeirodev] (https://github.com/SamuelRibeirodev) | [samuudev] (https://www.linkedin.com/in/samuu-dev/) |
-| Guilherme Henrique | RM 575071 | [turma] | [link] | [link] |
+| Guilherme Henrique | RM 575071 | 1TDSPT-2026 | [link] | [link] |
 | [Nome] | [RM] | [turma] | [link] | [link] |
 
 ## Repositório
