@@ -138,10 +138,10 @@ petalerta/
 ## Autores
 | Nome completo | RM | Turma | GitHub | LinkedIn |
 |---|---|---|---|---|
-| Gustavo Policarpo | RM 574269 | [1TDSPT] | [policarpogustavo](https://github.com/policarpogustavo) | [gupolicarpo](https://www.linkedin.com/in/gupolicarpo/) |
-| Bruno Vieira de Godois | RM 575296 | [1TDSPT] | [brunovgodois](https://github.com/brunovgodois) | [brunovgodois](https://www.linkedin.com/in/brunovgodois/) |
-| Samuel da Silva Ribeiro | RM 576499 | [1TDSPT] |[SamuelRibeirodev](https://github.com/SamuelRibeirodev) | [samuudev](https://www.linkedin.com/in/samuu-dev/) |
-| [Nome] | [RM] | [turma] | [link] | [link] |
+| Gustavo Policarpo | RM 574269 | 1TDSPT-2026 | [policarpogustavo](https://github.com/policarpogustavo) | [gupolicarpo](https://www.linkedin.com/in/gupolicarpo/) |
+| Bruno Vieira de Godois | RM 575296 | 1TDSPT-2026 | [brunovgodois](https://github.com/brunovgodois) | [brunovgodois](https://www.linkedin.com/in/brunovgodois/) |
+| Samuel da Silva Ribeiro | RM 576499 | 1TDSPT-2026 | [SamuelRibeirodev](https://github.com/SamuelRibeirodev) | [samuu-dev](https://www.linkedin.com/in/samuu-dev/) |
+| Guilherme Henrique | RM 575071 | 1TDSPT-2026 | [guiholiv](https://github.com/guiholiv) | [guilherme-pereira](https://www.linkedin.com/in/guilherme-pereira-36812b385/) |
 | [Nome] | [RM] | [turma] | [link] | [link] |
 
 ## Repositório
