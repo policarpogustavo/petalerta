@@ -23,9 +23,11 @@ function calcularCompatibilidade(anuncio, caso) {
     return pontos;
 }
 
-// Quem perdeu procura entre achados e animais em risco; os outros procuram entre perdidos
+// Perdido procura entre achados e achado procura entre perdidos; risco não entra no cruzamento
 function tiposOpostos(tipo) {
-    return tipo === "perdido" ? ["achado", "risco"] : ["perdido"];
+    if (tipo === "perdido") return ["achado"];
+    if (tipo === "achado") return ["perdido"];
+    return [];
 }
 
 // Casos abertos com 60 pontos ou mais, do mais parecido para o menos parecido
